@@ -4,8 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
-
 class Offer extends Component {
 	constructor(props) {
 		super(props);
@@ -41,9 +39,10 @@ class Offer extends Component {
 		return(
 			<section id="offer">
 				<Container>
-					<div className="main-header-container">
+					<div className="offer-header-container mt-4">
 						<h1>Usługi</h1>
 					</div>
+					<div className="divider mx-auto mb-4 mt-2" />
 					<Row className="index-offer-about-row">
 						<Col md={6}>
 							<div className="offer-container p-2">
@@ -103,6 +102,38 @@ class Offer extends Component {
 									</div>
 									<div className="p-container">
 										<p>Ty decydujesz kiedy przystąpimy do naprawy usterki.</p>
+									</div>
+								</div>
+							</div>
+						</Col>
+					</Row>
+					<Row className="mt-3 mt-md-0 pt-md-4 index-offer-about-row">
+						<Col md={6}>
+							<div className="offer-container p-2">
+								<div className="icon-container">
+									<i className="bi bi-award" />
+								</div>
+								<div className="text-container p-2">
+									<div className="header-container">
+										<h3>Profesjonalne szkolenia</h3>
+									</div>
+									<div className="p-container">
+										<p>Od razu zostaniesz przeszkolony z zakresu używania urządzenia.</p>
+									</div>
+								</div>
+							</div>
+						</Col>
+						<Col md={6} className="mt-3 mt-md-0 ">
+							<div className="offer-container p-2">
+								<div className="icon-container">
+									<i className="bi bi-tools" />
+								</div>
+								<div className="text-container p-2">
+									<div className="header-container">
+										<h3>Infolinia</h3>
+									</div>
+									<div className="p-container">
+										<p>Masz jakieś pytania? Zawsze możesz zadzwonić :)</p>
 									</div>
 								</div>
 							</div>
