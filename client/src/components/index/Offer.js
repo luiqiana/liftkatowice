@@ -4,32 +4,36 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+
 class Offer extends Component {
 	constructor(props) {
 		super(props);
+
+		this.resize = this.resize.bind(this);
 	}
 
 	componentDidMount() {
-		this.load();
+		this.resize();
+		window.addEventListener("resize", this.resize);
 	}
 
-	load() {
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.resize);
+	}
+
+	resize() {
 		Array.prototype.forEach.call(document.getElementsByClassName("index-offer-about-row"), function(el) {
-			console.log(el);
-			let childs = el.children;
-			console.log(childs);
-			let childs1 = childs.children;
-			console.log(childs1);
-			//console.log(childs[1].clientHeight);
+			const childs = [el.children[0].children[0], el.children[1].children[0]];
+			const borderWidth = parseInt(getComputedStyle(childs[0]).borderTopWidth);
 
-			/*let counter = 0;
-			Array.prototype.forEach.call(el.children, function(child) {
-				childs[counter] = child;
-				counter++;
-			});
-
-			if(childs[0].clientHeight > childs[1].clientHeight) childs[1].style.height = childs[0].clientHeight + "px";
-			else if(childs[0].clientHeight < childs[1].clientHeight) childs[0].style.height = childs[1].clientHeight + "px";*/
+			if(window.innerWidth >= 768) {
+				if (childs[0].clientHeight > childs[1].clientHeight) childs[1].style.height = childs[0].clientHeight + borderWidth * 2 + "px";
+				else if (childs[0].clientHeight < childs[1].clientHeight) childs[0].style.height = childs[1].clientHeight + borderWidth * 2 + "px";
+			}
+			else {
+				Array.prototype.forEach.call(childs, function(ell) {ell.style = "none"});
+			}
 		});
 	}
 
@@ -56,7 +60,7 @@ class Offer extends Component {
 								</div>
 							</div>
 						</Col>
-						<Col md={6}>
+						<Col md={6} className="mt-3 mt-md-0">
 							<div className="offer-container p-2">
 								<div className="icon-container">
 									<i className="bi bi-asterisk" />
@@ -72,7 +76,7 @@ class Offer extends Component {
 							</div>
 						</Col>
 					</Row>
-					<Row className="pt-md-4 index-offer-about-row">
+					<Row className="mt-3 mt-md-0 pt-md-4 index-offer-about-row">
 						<Col md={6}>
 							<div className="offer-container p-2">
 								<div className="icon-container">
@@ -88,7 +92,7 @@ class Offer extends Component {
 								</div>
 							</div>
 						</Col>
-						<Col md={6} className="h-100">
+						<Col md={6} className="mt-3 mt-md-0 ">
 							<div className="offer-container p-2">
 								<div className="icon-container">
 									<i className="bi bi-tools" />
