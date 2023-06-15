@@ -87,7 +87,6 @@ class ColsCreator extends Component {
 		}
 
 		return cols;
-
 	}
 }
 

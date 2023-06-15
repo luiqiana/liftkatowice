@@ -132,11 +132,13 @@ section#indexMain {
 
 	div.text-container {
 		margin-left: auto;
-		text-align: right;
 		height: 100%;
 		display: flex;
 		align-items: center;
 		animation: animMainText 0.75s ease-in-out;
+		@media (min-width: 360px) {
+			text-align: right;
+		}
 
 		@media (min-width: 768px) {
 			width: 80%
@@ -157,8 +159,13 @@ section#indexMain {
 			div.header-container {
 				h1 {
 					color: #ffffff;
-					font-size: 55px;
 					text-shadow: 0 0 5px #000000;
+					@media (min-width: 360px) {
+						font-size: 55px;
+					}
+					@media (max-width: 359px) {
+						font-size: 40px;
+					}
 				}
 			}
 
@@ -380,10 +387,16 @@ section#projects {
 		text-align: center;
 
 		h1 {
-			font-size: 50px;
+
 			font-weight: 300;
 			color: #000000;
 			margin-bottom: 0;
+			@media (min-width: 360px) {
+				font-size: 50px;
+			}
+			@media (max-width: 359px) {
+				font-size: 40px;
+			}
 		}
 
 		div.divider {
@@ -447,22 +460,52 @@ div.projects-gallery {
 
 	div.gallery-container {
 		display: flex;
-		width: 385px;
+		@media (min-width: 360px) {
+			width: 385px;
+		}
+		@media (max-width: 359px) and (min-width: 301px) {
+			width: 290px;
+		}
+		@media (max-width: 300px) {
+			width: 280px;
+		}
 
 		div.left-container {
 			display: inline-block;
-			max-width: 400px;
+			@media (min-width: 360px) {
+				max-width: 300px;
+			}
+			@media (max-width: 359px) and (min-width: 301px) {
+				width: 230px;
+			}
+			@media (max-width: 300px) {
+				width: 220px;
+			}
 
 			div.main-image-container {
 				display: flex;
 				justify-content: space-between;
 
+				img {
+					width: 100%;
+				}
+
 				div.arrows-container {
 					position: absolute;
 					display: flex;
 					justify-content: space-between;
-					width: 300px;
-					height: 400px;
+					@media (min-width: 360px) {
+						width: 300px;
+						height: 400px;
+					}
+					@media (max-width: 359px) and (min-width: 301px) {
+						width: 230px;
+						height: 307px;
+					}
+					@media (max-width: 300px) {
+						width: 220px;
+						height: 293px;
+					}
 
 					div.arrow-container {
 						display: flex;
@@ -510,9 +553,14 @@ div.projects-gallery {
 		}
 
 		div.right-container {
-			max-width: 70px;
 			display: inline-block;
 			margin-left: 15px;
+			@media (min-width: 360px) {
+				max-width: 70px;
+			}
+			@media (max-width: 359px) {
+				width: 45px;
+			}
 
 			div.other-image-container {
 				img {

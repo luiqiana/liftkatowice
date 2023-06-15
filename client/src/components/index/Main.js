@@ -15,11 +15,11 @@ class Main extends Component {
 						<Col md={6} className="h-100">
 							<div className="text-container">
 								<div className="text-wrapper">
-									<div className="header-container px-3">
+									<div className="header-container px-1 px-sm-3">
 										<h1>Najlepszy serwis w twojej okolicy!</h1>
 									</div>
 									<div className="divider" />
-									<div className="subtitle-container px-3 mt-2">
+									<div className="subtitle-container px-1 px-sm-3 mt-2">
 										<h5>Zmieniamy się na lepsze dla Ciebie!</h5>
 									</div>
 									<div className="button-container">
