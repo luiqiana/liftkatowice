@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Main from "./index/Main";
 import About from "./index/About";
 import Offer from "./index/Offer";
+import Projects from "./index/Projects";
 
 class Index extends Component {
 	render() {
@@ -11,6 +12,7 @@ class Index extends Component {
 				<Main />
 				<About />
 				<Offer />
+				<Projects />
 			</>
 		);
 	}

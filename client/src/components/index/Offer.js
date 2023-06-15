@@ -29,15 +29,13 @@ class Offer extends Component {
 				if (childs[0].clientHeight > childs[1].clientHeight) childs[1].style.height = childs[0].clientHeight + borderWidth * 2 + "px";
 				else if (childs[0].clientHeight < childs[1].clientHeight) childs[0].style.height = childs[1].clientHeight + borderWidth * 2 + "px";
 			}
-			else {
-				Array.prototype.forEach.call(childs, function(ell) {ell.style = "none"});
-			}
+			else Array.prototype.forEach.call(childs, function(ell) {ell.style = "none"});
 		});
 	}
 
 	render() {
 		return(
-			<section id="offer">
+			<section id="offer" className="pb-5">
 				<Container>
 					<div className="offer-header-container mt-4">
 						<h1>Usługi</h1>

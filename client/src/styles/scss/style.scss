@@ -249,6 +249,7 @@ section#offer {
 	div.container {
 		div.offer-header-container {
 			text-align: center;
+
 			h1 {
 				font-size: 50px;
 				font-weight: 300;
@@ -351,6 +352,167 @@ section#offer {
 						p {
 							margin-bottom: 0;
 						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+	Projects
+*/
+section#projects {
+	background-color: #dddddd;
+
+	div.header-container {
+		text-align: center;
+
+		h1 {
+			font-size: 50px;
+			font-weight: 300;
+			color: #000000;
+			margin-bottom: 0;
+		}
+
+		div.divider {
+			background-color: #ff0000;
+			width: 100px;
+			height: 5px;
+		}
+	}
+
+	div.img-container {
+		display: flex;
+		justify-content: center;
+
+		img {
+			transition: 0.5s;
+			cursor: pointer;
+
+			&:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 15px 15px 5px rgba(0, 0, 0, 0.3);
+			}
+		}
+	}
+}
+
+div.projects-gallery {
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+	background-color: rgba(0,0,0,0.85);
+	justify-content: center;
+	align-items: center;
+
+	div.close-container {
+		position: absolute;
+		right: 10px;
+		top: 70px;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		i {
+			transition: 0.5s;
+			cursor: pointer;
+
+			&:hover {
+				transform: rotate(180deg);
+			}
+
+			&::before {
+				color: #ffffff;
+				transform: scale(300%);
+			}
+		}
+	}
+
+	div.gallery-container {
+		display: flex;
+		width: 385px;
+
+		div.left-container {
+			display: inline-block;
+			max-width: 400px;
+
+			div.main-image-container {
+				display: flex;
+				justify-content: space-between;
+
+				div.arrows-container {
+					position: absolute;
+					display: flex;
+					justify-content: space-between;
+					width: 300px;
+					height: 400px;
+
+					div.arrow-container {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 30px;
+						cursor: pointer;
+						transition: 0.5s;
+
+						&.arrow-container-left {
+							&:hover {
+								i {
+									transform: translateX(-10px) !important;
+								}
+							}
+						}
+
+						&.arrow-container-right {
+							&:hover {
+								i {
+									transform: translateX(10px) !important;
+								}
+							}
+						}
+
+						i {
+							transition: 0.5s;
+
+							&::before {
+								color: #ffffff;
+								transform: scale(300%);
+							}
+						}
+					}
+				}
+			}
+
+			div.title-container {
+				text-align: center;
+
+				h5 {
+					color: #ffffff;
+				}
+			}
+		}
+
+		div.right-container {
+			max-width: 70px;
+			display: inline-block;
+			margin-left: 15px;
+
+			div.other-image-container {
+				img {
+					width: 100%;
+					top: 0;
+					margin-bottom: 10px;
+					cursor: pointer;
+					transition: 0.5s;
+
+					&:hover {
+						filter: brightness(50%);
 					}
 				}
 			}
