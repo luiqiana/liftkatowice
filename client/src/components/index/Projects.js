@@ -1,65 +1,28 @@
 import React, {Component} from 'react';
 
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 import OtherImg from "./projects/OtherImg";
+import ProjectCreator from "./projects/ProjectCreator";
 
 // eslint-disable-next-line
 const galleryConfig = {
-	y2017: {
+	y2021: {
 		p1: {
-			t: "Fux Gliwice",
-			n: 4
+			t: "SM Strzecha Bielsko-Biała",
+			n: 3
 		},
 		p2: {
-			t: "Klub Studio Kraków",
+			t: "Rewadent Katowice",
 			n: 4
 		},
 		p3: {
-			t: "Muzeum Śląskie Katowice",
+			t: "Klinika Dentystyczna Katowice",
 			n: 4
 		},
 		p4: {
-			t: "Budynek Biurowy Lublin",
+			t: "Agata Meble Włocławek",
 			n: 4
-		}
-	},
-	y2018: {
-		p1: {
-			t: "Mera Bielsko-Biała",
-			n: 4
-		},
-		p2: {
-			t: "Kwitnąca Zagórzyce Dworskie",
-			n: 4
-		},
-		p3: {
-			t: "Larkis Dobczyce",
-			n: 4,
-		},
-		p4: {
-			t: "Henkel Racibórz",
-			n: 4
-		}
-	},
-	y2019: {
-		p1: {
-			t: "Izba Rzemieślnicza Wrocław",
-			n: 4
-		},
-		p2: {
-			t: "Mops Ruda Śląska",
-			n: 3
-		},
-		p3: {
-			t: "Przedszkole nr. 16 Chorzów",
-			n: 3
-		},
-		p4: {
-			t: "Unilever Katowice",
-			n: 3
 		}
 	},
 	y2020: {
@@ -80,21 +43,57 @@ const galleryConfig = {
 			n: 3
 		}
 	},
-	y2021: {
+	y2019: {
 		p1: {
-			t: "SM Strzecha Bielsko-Biała",
-			n: 3
+			t: "Izba Rzemieślnicza Wrocław",
+			n: 4
 		},
 		p2: {
-			t: "Rewadent Katowice",
+			t: "Mops Ruda Śląska",
+			n: 3
+		},
+		p3: {
+			t: "Przedszkole nr. 16 Chorzów",
+			n: 3
+		},
+		p4: {
+			t: "Unilever Katowice",
+			n: 3
+		}
+	},
+	y2018: {
+		p1: {
+			t: "Mera Bielsko-Biała",
+			n: 4
+		},
+		p2: {
+			t: "Kwitnąca Zagórzyce Dworskie",
 			n: 4
 		},
 		p3: {
-			t: "Klinika Dentystyczna Katowice",
+			t: "Larkis Dobczyce",
+			n: 4,
+		},
+		p4: {
+			t: "Henkel Racibórz",
+			n: 4
+		}
+	},
+	y2017: {
+		p1: {
+			t: "Fux Gliwice",
+			n: 4
+		},
+		p2: {
+			t: "Klub Studio Kraków",
+			n: 4
+		},
+		p3: {
+			t: "Muzeum Śląskie Katowice",
 			n: 4
 		},
 		p4: {
-			t: "Agata Meble Włocławek",
+			t: "Budynek Biurowy Lublin",
 			n: 4
 		}
 	}
@@ -222,32 +221,11 @@ class Projects extends Component {
 			<>
 				<section id="projects" className="p-4">
 					<Container>
-						<Row>
-							<div className="header-container">
-								<h1>Realizacje 2021</h1>
-								<div className="divider mx-auto mb-4 mt-2" />
-							</div>
-							<Col sm={6} lg={3}>
-								<div className="img-container">
-									<img className="rounded" src={require("../../imgs/index/projects/2021-1.webp")} alt="Realizacja 2021" onClick={(e) => {e.preventDefault(); this.openGallery(2021, 1);}} />
-								</div>
-							</Col>
-							<Col sm={6} lg={3} className="mt-4 mt-sm-0">
-								<div className="img-container">
-									<img className="rounded" src={require("../../imgs/index/projects/2021-2.webp")} alt="Realizacja 2021" onClick={(e) => {e.preventDefault(); this.openGallery(2021, 2);}} />
-								</div>
-							</Col>
-							<Col sm={6} lg={3} className="mt-4 mt-lg-0">
-								<div className="img-container">
-									<img className="rounded" src={require("../../imgs/index/projects/2021-3.webp")} alt="Realizacja 2021" onClick={(e) => {e.preventDefault(); this.openGallery(2021, 3);}} />
-								</div>
-							</Col>
-							<Col sm={6} lg={3} className="mt-4 mt-lg-0">
-								<div className="img-container">
-									<img className="rounded" src={require("../../imgs/index/projects/2021-4.webp")} alt="Realizacja 2021" onClick={(e) => {e.preventDefault(); this.openGallery(2021, 4);}} />
-								</div>
-							</Col>
-						</Row>
+						<ProjectCreator
+							key={1}
+							config={galleryConfig}
+							openGallery={this.openGallery}
+						/>
 					</Container>
 				</section>
 				<div className="projects-gallery position-fixed" id="projectsGallery">

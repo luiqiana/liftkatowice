@@ -365,6 +365,17 @@ section#offer {
 section#projects {
 	background-color: #dddddd;
 
+	div.show-more-container {
+		p#projectsCollapseButton {
+			cursor: pointer;
+			transition: 0.5s;
+
+			&:hover {
+				color: #ff0000;
+			}
+		}
+	}
+
 	div.header-container {
 		text-align: center;
 
