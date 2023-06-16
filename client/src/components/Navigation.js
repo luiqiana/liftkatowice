@@ -50,6 +50,7 @@ class Navigation extends Component {
 						<Nav.Link href="/#about" id="NavAbout" className="me-4">O firmie</Nav.Link>
 						<Nav.Link href="/#offer" id="NavOffer" className="me-4">Usługi</Nav.Link>
 						<Nav.Link href="/#projects" id="NavProjects" className="me-4">Realizacje</Nav.Link>
+						<Nav.Link href="/#clients" id="NavClients" className="me-4">Klienci</Nav.Link>
 						<Nav.Link href="/#contact" id="NavContact">Kontakt</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>

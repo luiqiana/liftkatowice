@@ -253,6 +253,8 @@ section#about {
 	Offer
 */
 section#offer {
+	scroll-margin-top: 60px;
+
 	div.container {
 		div.offer-header-container {
 			text-align: center;
@@ -370,6 +372,7 @@ section#offer {
 	Projects
 */
 section#projects {
+	scroll-margin-top: 60px;
 	background-color: #dddddd;
 
 	div.show-more-container {
@@ -574,6 +577,47 @@ div.projects-gallery {
 						filter: brightness(50%);
 					}
 				}
+			}
+		}
+	}
+}
+
+/*
+	Clients
+*/
+section#clients {
+	div.header-container {
+		text-align: center;
+
+		h1 {
+			font-weight: 300;
+			color: #000000;
+			margin-bottom: 0;
+			@media (min-width: 360px) {
+				font-size: 50px;
+			}
+			@media (max-width: 359px) {
+				font-size: 40px;
+			}
+		}
+
+		div.divider {
+			background-color: #ff0000;
+			width: 100px;
+			height: 5px;
+		}
+	}
+
+	div.img-container {
+		display: flex;
+		justify-content: center;
+
+		img {
+			width: 200px;
+			transition: 0.5s;
+
+			&:hover {
+				transform: translateY(-10px);
 			}
 		}
 	}

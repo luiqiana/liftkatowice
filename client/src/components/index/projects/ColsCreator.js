@@ -6,6 +6,7 @@ class ColsCreator extends Component {
 		super(props);
 
 		this.calcCols = this.calcCols.bind(this);
+		this.calcClass = this.calcClass.bind(this);
 	}
 
 	calcCols(NoTLO) {
