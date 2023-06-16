@@ -4,6 +4,7 @@ import Main from "./index/Main";
 import About from "./index/About";
 import Offer from "./index/Offer";
 import Projects from "./index/Projects";
+import Clients from "./index/Clients";
 
 class Index extends Component {
 	render() {
@@ -13,6 +14,7 @@ class Index extends Component {
 				<About />
 				<Offer />
 				<Projects />
+				<Clients />
 			</>
 		);
 	}
