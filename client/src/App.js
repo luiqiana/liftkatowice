@@ -6,6 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/css/style.css';
 
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 
 import Index from "./components/Index";
 
@@ -17,6 +18,7 @@ class App extends Component {
 				<Routes>
 					<Route path="/" element={<Index />} />
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		);
 	}

@@ -123,6 +123,60 @@ nav#navbartop {
 }
 
 /*
+	Footer
+*/
+footer {
+	position: relative;
+	z-index: 999;
+
+	section {
+		div {
+			a {
+				i.footer-icon {
+					text-decoration: none;
+					transition: 0.5s;
+
+					&:hover {
+						color: #ff0000 !important;
+					}
+				}
+			}
+		}
+
+		div.container {
+			div.row {
+				div {
+					p {
+						a.footer-text {
+							text-decoration: none;
+							transition: 0.5s;
+
+							&:hover {
+								color: #ff0000 !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	div.footer-copyright {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 10px;
+
+		a {
+			text-decoration: none;
+			transition: 0.5s;
+
+			&:hover {
+				color: #ff0000 !important;
+			}
+		}
+	}
+}
+
+/*
 	Index
 */
 // Main
@@ -208,9 +262,7 @@ section#indexMain {
 	}
 }
 
-/*
-	About
-*/
+// About
 section#about {
 	background-color: #dddddd;
 	scroll-margin-top: 60px;
@@ -249,9 +301,7 @@ section#about {
 	}
 }
 
-/*
-	Offer
-*/
+// Offer
 section#offer {
 	scroll-margin-top: 60px;
 
@@ -368,9 +418,7 @@ section#offer {
 	}
 }
 
-/*
-	Projects
-*/
+// Projects
 section#projects {
 	scroll-margin-top: 60px;
 	background-color: #dddddd;
@@ -582,9 +630,7 @@ div.projects-gallery {
 	}
 }
 
-/*
-	Clients
-*/
+// Clients
 section#clients {
 	div.header-container {
 		text-align: center;
