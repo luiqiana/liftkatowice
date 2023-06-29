@@ -10,7 +10,7 @@ class ClientsCreator extends Component {
 
 		for(let i = 1; i <= length; i++) {
 			clients.push(
-				<p>
+				<p key={i}>
 					<a href={config[`e${i}`].url} className="text-reset footer-text">{config[`e${i}`].title}</a>
 				</p>
 			);

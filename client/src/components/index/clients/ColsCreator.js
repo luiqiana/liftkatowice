@@ -59,9 +59,6 @@ class ColsCreator extends Component {
 		const cols = [];
 		const NoTLE = (notle - (row * 4)) > 4 ? 4 : notle - (row * 4);
 		const dCount = row * 4;
-		console.log("dCount " + dCount);
-		console.log("notle " + notle)
-		console.log("NoTLE " + NoTLE);
 		const colWidth = this.calcCols(NoTLE);
 
 		for(let i = 1; i <= NoTLE; i++) {

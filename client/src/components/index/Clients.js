@@ -28,9 +28,9 @@ class Clients extends Component {
 		}
 
 		return(
-			<section id="clients">
+			<section id="clients" className="p-4">
 				<Container>
-					<div className="header-container mt-4">
+					<div className="header-container">
 						<h1>Nasi klienci</h1>
 						<div className="divider mx-auto mb-4 mt-2" />
 					</div>

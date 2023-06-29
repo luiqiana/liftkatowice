@@ -5,6 +5,7 @@ import About from "./index/About";
 import Offer from "./index/Offer";
 import Projects from "./index/Projects";
 import Clients from "./index/Clients";
+import Maps from "./index/Maps";
 
 class Index extends Component {
 	render() {
@@ -15,6 +16,7 @@ class Index extends Component {
 				<Offer />
 				<Projects />
 				<Clients />
+				<Maps />
 			</>
 		);
 	}

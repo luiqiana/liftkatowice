@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
+import SectionCreator from "./navigation/SectionCreator";
+
 class Navigation extends Component {
 	componentDidMount() {
 		this.navbarHamburgerCreate();
@@ -38,20 +40,15 @@ class Navigation extends Component {
 
 	render() {
 		return(
-			<Navbar className="py-0 px-2" bg="light" expand="md" sticky="top" id="navbartop">
+			<Navbar className="py-0 px-2" bg="light" expand="lg" sticky="top" id="navbartop">
 				<div className="navbar-fill d-none d-xl-block" />
 				<Navbar.Brand className="ms-0" href="/">
 					<img src={require("../imgs/logo.webp")}  alt="Logo"/>
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" className="d-flex d-md-none flex-column justify-content-around"/>
+				<Navbar.Toggle aria-controls="basic-navbar-nav" className="d-flex d-lg-none flex-column justify-content-around"/>
 				<Navbar.Collapse>
 					<Nav className="ms-auto">
-						<Nav.Link href="/#" id="NavHome" className="me-4">Główna</Nav.Link>
-						<Nav.Link href="/#about" id="NavAbout" className="me-4">O firmie</Nav.Link>
-						<Nav.Link href="/#offer" id="NavOffer" className="me-4">Usługi</Nav.Link>
-						<Nav.Link href="/#projects" id="NavProjects" className="me-4">Realizacje</Nav.Link>
-						<Nav.Link href="/#clients" id="NavClients" className="me-4">Klienci</Nav.Link>
-						<Nav.Link href="/#contact" id="NavContact">Kontakt</Nav.Link>
+						<SectionCreator />
 					</Nav>
 				</Navbar.Collapse>
 				<div className="navbar-fill d-none d-xl-block" />
