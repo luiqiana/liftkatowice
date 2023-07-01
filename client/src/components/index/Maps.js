@@ -24,10 +24,10 @@ function Maps() {
 			</div>
 			<Container className="rounded p-0">
 				<Row>
-					<Col md={9}>
+					<Col md={8} lg={9}>
 						<Map />
 					</Col>
-					<Col md={3}>
+					<Col md={4} lg={3} className="mt-3 mt-md-0">
 						<div className="description-container p-2">
 							<div className="header-container">
 								<h2>Szczegóły</h2>
