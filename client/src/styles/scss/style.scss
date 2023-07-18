@@ -753,6 +753,29 @@ section#contact {
 		transition: 0.5s ease-in-out;
 
 		div.form-wrapper {
+			div.contact-alert {
+				margin-bottom: 0;
+				top: 65px;
+				left: 5px;
+				margin-right: 5px;
+				z-index: 9999;
+				transition: all 0.5s ease-in-out;
+				transform: translateX(-650px);
+				padding-right: 3rem;
+
+				button.contact-alert-close {
+					position: absolute;
+					top: 0;
+					right: 0;
+					z-index: 2;
+					padding: 1.25rem 1rem;
+				}
+
+				&.contact-alert-active {
+					transform: translateX(0);
+				}
+			}
+
 			form.contact-form-info {
 				div.contact-form-info {
 					background-color: #ffffff;
@@ -772,7 +795,19 @@ section#contact {
 						div.countrycode-container {
 							display: inline-block;
 
-							@media(min-width: 500px) {
+							@media(min-width: 1701px){
+								width: 15%;
+							}
+
+							@media(min-width: 1101px) and (max-width: 1700px) {
+								width: 25%;
+							}
+
+							@media(min-width: 768px) and (max-width: 1100px) {
+								width: 35%;
+							}
+
+							@media(min-width: 500px) and (max-width: 767px) {
 								width: 15%;
 							}
 
@@ -812,7 +847,19 @@ section#contact {
 						div.phone-container {
 							display: inline-block;
 
-							@media(min-width: 500px) {
+							@media(min-width: 1701px){
+								width: 85%;
+							}
+
+							@media(min-width: 1101px) and (max-width: 1700px) {
+								width: 75%;
+							}
+
+							@media(min-width: 768px) and (max-width: 1100px) {
+								width: 65%;
+							}
+
+							@media(min-width: 500px) and (max-width: 767px) {
 								width: 85%;
 							}
 
@@ -877,6 +924,10 @@ section#contact {
 							resize: none;
 							height: 200px;
 
+							&.highlight {
+								background-color: rgba(255, 0, 0, 0.2) !important;
+							}
+
 							&:focus {
 								border: 2px solid #dddddd;
 							}
@@ -884,17 +935,38 @@ section#contact {
 					}
 				}
 
-				div.contact-info-submit-container {
+				div.contact-submit-container {
 					width: 100%;
 					display: flex;
 					justify-content: center;
 
-					button.contact-info-submit-button {
+					span.contact-submit-loader {
+						height: 30px !important;
+						width: 30px !important;
+
+						&.text {
+							display: none;
+						}
+
+						&.loader {
+							display: inline-block;
+						}
+					}
+
+					button.contact-submit-button {
 						border-radius: 15px;
 						border: 2px solid #ff0000;
 						transition: 0.5s;
 						outline: none;
 						width: 100px;
+
+						&.text {
+							display: inline-block;
+						}
+
+						&.loader {
+							display: none;
+						}
 
 						&:hover {
 							border: 2px solid #dddddd;

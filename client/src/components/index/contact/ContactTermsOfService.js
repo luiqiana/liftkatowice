@@ -13,6 +13,7 @@ class ContactTermsOfService extends Component {
 	}
 
 	componentDidMount() {
+		this.changeTerms = this.changeTerms.bind(this);
 	}
 
 	changeTerms(e) {

@@ -23,7 +23,7 @@ class Contact extends Component {
 								</div>
 							</div>
 						</Col>
-						<Col md={6} className="p-0 ps-0 ps-md-2">
+						<Col md={6} className="p-0 ps-0 ps-md-2 mt-3 mt-md-0">
 							<div className="form-container p-3">
 								<div className="header-container">
 									<h2>Formularz kontaktowy</h2>
