@@ -498,6 +498,10 @@ div.projects-gallery {
 	justify-content: center;
 	align-items: center;
 
+	&.projects-gallery-show {
+		display: flex !important;
+	}
+
 	div.close-container {
 		position: absolute;
 		right: 10px;

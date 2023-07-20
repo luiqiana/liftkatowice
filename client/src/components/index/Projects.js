@@ -4,11 +4,10 @@ import Container from "react-bootstrap/Container";
 
 import OtherImg from "./projects/OtherImg";
 import ProjectCreator from "./projects/ProjectCreator";
+import MainImg from "./projects/MainImg";
 
 import galleryConfigFile from "./projects/GalleryConfig";
 const galleryConfig = galleryConfigFile;
-
-let galleryImgs = [];
 
 class Projects extends Component {
 	constructor(props) {
@@ -24,25 +23,26 @@ class Projects extends Component {
 			galleryYear: 0,
 			galleryProject: 0,
 			galleryImg: 0,
-			galleryTitle: ""
+			galleryImgs: <></>,
+			galleryTitle: "",
+			galleryOpen: false,
+			galleryMainImg: <></>
 		}
 	}
 
 	openGallery(year, project) {
-		const gallery = document.getElementById("projectsGallery");
-		const main = document.getElementById("projectsMainImageContainer");
-
-		gallery.style.display = "flex";
 		document.getElementsByTagName("body")[0].style.overflow = "hidden";
 		// eslint-disable-next-line
 		const title = (eval("galleryConfig.y" + year + ".p" + project)).t;
 
-		const mainImg = document.createElement("img");
-		mainImg.alt = "No. 1";
-		mainImg.src = require(`../../imgs/index/projects/${year}/${project}/1.webp`);
-		mainImg.id = "projectsMainImg";
-		mainImg.classList.add("rounded");
-		main.appendChild(mainImg);
+		const mainImg = (
+			<MainImg
+				key={1}
+				number="1"
+				year={year}
+				project="1"
+			/>
+		);
 
 		// eslint-disable-next-line
 		const NoI = (eval("galleryConfig.y" + year + ".p" + project)).n;
@@ -63,23 +63,24 @@ class Projects extends Component {
 			galleryYear: year,
 			galleryProject: project,
 			galleryImg: 1,
-			galleryTitle: title
+			galleryImgs: otherImgs,
+			galleryTitle: title,
+			galleryOpen: true,
+			galleryMainImg: mainImg
 		});
-
-		galleryImgs = otherImgs;
 	}
 
 	closeGallery() {
-		document.getElementById("projectsGallery").style.display = "none";
 		document.getElementsByTagName("body")[0].style.overflow = "visible";
-		document.getElementById("projectsMainImg").remove();
-		galleryImgs = [];
 
 		this.setState({
 			galleryYear: 0,
 			galleryProject: 0,
 			galleryImg: 0,
-			galleryTitle: ""
+			galleryImgs: <></>,
+			galleryTitle: "",
+			galleryOpen: false,
+			galleryMainImg: <></>
 		});
 	}
 
@@ -87,7 +88,6 @@ class Projects extends Component {
 		const current = this.state.galleryImg;
 		const year = this.state.galleryYear;
 		const project = this.state.galleryProject;
-		const mainImg = document.getElementById("projectsMainImg");
 
 		// eslint-disable-next-line
 		const NoI = (eval("galleryConfig.y" + year + ".p" + project)).n;
@@ -105,24 +105,37 @@ class Projects extends Component {
 			default: break;
 		}
 
-		this.setState({
-			galleryImg: next
-		});
+		const mainImg = (
+			<MainImg
+				key={1}
+				number={next}
+				year={year}
+				project={project}
+			/>
+		);
 
-		mainImg.alt = `No. ${next}`;
-		mainImg.src = require(`../../imgs/index/projects/${year}/${project}/${next}.webp`);
+		this.setState({
+			galleryImg: next,
+			galleryMainImg: mainImg
+		});
 	}
 
 	directGallery(img) {
-		const mainImg = document.getElementById("projectsMainImg");
 		const year = this.state.galleryYear;
 		const project = this.state.galleryProject;
 
-		mainImg.alt = `No. ${img}`;
-		mainImg.src = require(`../../imgs/index/projects/${year}/${project}/${img}.webp`);
+		const mainImg = (
+			<MainImg
+				key={1}
+				number={img}
+				year={year}
+				project={project}
+			/>
+		);
 
 		this.setState({
-			galleryImg: img
+			galleryImg: img,
+			galleryMainImg: mainImg
 		});
 	}
 
@@ -138,21 +151,22 @@ class Projects extends Component {
 						/>
 					</Container>
 				</section>
-				<div className="projects-gallery position-fixed" id="projectsGallery">
+				<div className={`projects-gallery position-fixed projects-gallery-${this.state.galleryOpen ? "show" : "hide"}`}>
 					<div className="close-container">
 						<i className="bi bi-x-lg" onClick={(e) => {e.preventDefault(); this.closeGallery();}}/>
 					</div>
 					<div className="gallery-container">
 						<div className="left-container">
-							<div className="main-image-container" id="projectsMainImageContainer">
-								<div className="arrows-container" id="projectsArrowsContainer">
+							<div className="main-image-container">
+								{this.state.galleryMainImg}
+								<div className="arrows-container">
 									<div className="arrow-container arrow-container-left rounded" onClick={(e) => {e.preventDefault(); this.buttonGallery("left");}}>
 										<i className="bi bi-chevron-left" />
 									</div>
 									<div className="arrow-container arrow-container-right rounded" onClick={(e) => {e.preventDefault(); this.buttonGallery("right");}}>
 										<i className="bi bi-chevron-right" />
 									</div>
-									{galleryImgs.main}
+									{this.state.galleryImgs.main}
 								</div>
 							</div>
 							<div className="title-container">
@@ -160,7 +174,7 @@ class Projects extends Component {
 							</div>
 						</div>
 						<div className="right-container">
-							<div className="other-image-container" id="projectsOtherImageContainer">{galleryImgs}</div>
+							<div className="other-image-container">{this.state.galleryImgs}</div>
 						</div>
 					</div>
 				</div>
