@@ -427,8 +427,18 @@ section#projects {
 	scroll-margin-top: 60px;
 	background-color: #dddddd;
 
+	div.projects-collapse {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 1s ease-in-out;
+
+		&.projects-collapse-show {
+			max-height: 1500px;
+		}
+	}
+
 	div.show-more-container {
-		p#projectsCollapseButton {
+		p.projects-collapse-button {
 			cursor: pointer;
 			transition: 0.5s;
 
@@ -776,8 +786,8 @@ section#contact {
 				}
 			}
 
-			form.contact-form-info {
-				div.contact-form-info {
+			form {
+				div.contact-info {
 					background-color: #ffffff;
 					border-radius: 10px;
 
@@ -911,28 +921,6 @@ section#contact {
 							border: 2px solid #dddddd;
 						}
 					}
-
-					div.contact-form-info-message-container {
-						width: 100%;
-
-						textarea.contact-info-textarea-input {
-							width: 100%;
-							border-radius: 15px;
-							border: 2px solid #ff0000;
-							transition: 0.5s;
-							outline: none;
-							resize: none;
-							height: 200px;
-
-							&.highlight {
-								background-color: rgba(255, 0, 0, 0.2) !important;
-							}
-
-							&:focus {
-								border: 2px solid #dddddd;
-							}
-						}
-					}
 				}
 
 				div.contact-submit-container {
@@ -971,18 +959,6 @@ section#contact {
 						&:hover {
 							border: 2px solid #dddddd;
 						}
-					}
-				}
-
-				div.contact-form-info-error-container {
-					width: 100%;
-					text-align: center;
-					display: block;
-
-					p {
-						color: #ff0000;
-						font-style: italic;
-						margin-bottom: 0;
 					}
 				}
 
@@ -1074,6 +1050,42 @@ section#contact {
 					input[type="checkbox"].contact-terms-checkbox:checked:focus + label.contact-terms-label:before,
 					input[type="checkbox"].contact-terms-checkbox:not(:checked):focus + label.contact-terms-label:before {
 						box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 6px rgba(255, 0, 0, .2);
+					}
+				}
+
+				div.contact-info-error-container {
+					width: 100%;
+					text-align: center;
+					display: block;
+
+					p {
+						color: #ff0000;
+						font-style: italic;
+						margin-bottom: 0;
+					}
+				}
+			}
+
+			form.contact-form {
+				div.contact-form-info-message-container {
+					width: 100%;
+
+					textarea.contact-info-textarea-input {
+						width: 100%;
+						border-radius: 15px;
+						border: 2px solid #ff0000;
+						transition: 0.5s;
+						outline: none;
+						resize: none;
+						height: 200px;
+
+						&.highlight {
+							background-color: rgba(255, 0, 0, 0.2) !important;
+						}
+
+						&:focus {
+							border: 2px solid #dddddd;
+						}
 					}
 				}
 			}

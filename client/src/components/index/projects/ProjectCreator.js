@@ -14,22 +14,9 @@ class ProjectCreator extends Component {
 	}
 
 	showMore = () => {
-		const collapse = document.getElementById("projectsCollapse");
-		const collapseButton = document.getElementById("projectsCollapseButton");
-		if(this.state.open) {
-			collapse.style.display = "none";
-			collapseButton.innerText = "Pokaż więcej";
-			this.setState({
-				open: false
-			});
-		}
-		else {
-			collapse.style.display = "block";
-			collapseButton.innerText = "Pokaż mniej";
-			this.setState({
-				open: true
-			});
-		}
+		this.setState({
+			open: !this.state.open
+		});
 	}
 
 	render() {
@@ -78,10 +65,10 @@ class ProjectCreator extends Component {
 		}
 
 		projects.push(projectsNC);
-		projects.push(<div key="15" className="projects-collapse" style={{display: "none"}} id="projectsCollapse">{projectsC}</div>);
+		projects.push(<div key="15" className={`projects-collapse projects-collapse-${this.state.open ? "show" : "hide"}`}>{projectsC}</div>);
 		projects.push(
 			<div key="10" className="show-more-container text-center mt-4">
-				<p id="projectsCollapseButton" onClick={this.showMore}>Pokaż więcej</p>
+				<p className="projects-collapse-button" onClick={this.showMore}>{this.state.open ? "Pokaż mniej" : "Pokaż więcej"}</p>
 			</div>
 		);
 
