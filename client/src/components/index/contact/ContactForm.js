@@ -272,10 +272,9 @@ class ContactForm extends Component {
 				<Alert
 					key={1}
 					ref={this.AlertRef}
-					action={this.closeAlert}
 				/>
-				<Form className="contact-form-info" id="ContactForm">
-					<div className="contact-form-info pt-2 px-2">
+				<Form className="contact-form" id="ContactForm">
+					<div className="contact-info pt-2 px-2">
 						<ContactInformation
 							key={1}
 							ref={this.InfoRef}
@@ -296,7 +295,7 @@ class ContactForm extends Component {
 						type="Form"
 					/>
 					<Form.Group>
-						<div className="contact-form-info-error-container" id="contactFormInfoErrorContainer">
+						<div className="contact-info-error-container" id="contactFormInfoErrorContainer">
 							<p className="mt-3">{this.state.errors}</p>
 						</div>
 					</Form.Group>

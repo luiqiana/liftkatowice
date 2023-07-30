@@ -39,9 +39,6 @@ class ContactInformation extends Component {
 
 		return (
 			<>
-				{/*<div className="header-container">
-					<h5>Kontakt:</h5>
-				</div>*/}
 				<Container fluid>
 					<Row>
 						<Col col={6} className="p-0 pe-0 pe-md-2">
@@ -60,10 +57,10 @@ class ContactInformation extends Component {
 							<Form.Group>
 								<div className="contact-info-phone-container w-100 h-100">
 									<div className="countrycode-container">
-										<input type="text" className={`contact-info-countrycode-input ps-1 ${this.state.countrycodeHighlight}`} id={`contact${type}CountrycodeInput`} spellCheck="false" name={`contact${type}CountrycodeInput`} placeholder="+48" title="Kod państwa" value={this.state.countrycode} onChange={(e) => this.changeInput(e)}></input>
+										<input type="text" className={`contact-info-countrycode-input ps-1 ${this.state.countrycodeHighlight}`} id={`contact${type}CountrycodeInput`} spellCheck="false" name={`contact${type}CountrycodeInput`} placeholder="+48" title="Kod państwa" value={this.state.countrycode} onChange={(e) => this.changeInput(e)}/>
 									</div>
 									<div className="phone-container">
-										<input type="text" className={`contact-info-phone-input ps-1 ${this.state.phoneHighlight}`} id={`contact${type}PhoneInput`} spellCheck="false" name={`contact${type}PhoneInput`} placeholder="Telefon" title="Telefon" value={this.state.phone} onChange={(e) => this.changeInput(e)}></input>
+										<input type="text" className={`contact-info-phone-input ps-1 ${this.state.phoneHighlight}`} id={`contact${type}PhoneInput`} spellCheck="false" name={`contact${type}PhoneInput`} placeholder="Telefon" title="Telefon" value={this.state.phone} onChange={(e) => this.changeInput(e)}/>
 									</div>
 								</div>
 							</Form.Group>

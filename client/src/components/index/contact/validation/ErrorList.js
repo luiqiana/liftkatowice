@@ -1,4 +1,4 @@
-export const ContactFormErrors = {
+export const ContactInfoErrors = {
 	Empty: "Musisz wypełnic pola podświetlone na czerwono",
 	NameLetters: "Imię musi mieć co najmniej 3 znaki",
 	NameNumbers: "Imię nie może posiadać cyfr",
@@ -9,7 +9,10 @@ export const ContactFormErrors = {
 	CountrycodeIncorrect: "Numer kierunkowy nie jest prawidłowy",
 	PhoneIncorrect: "Numer telefonu nie jest prawidłowy",
 	CompanyLetters: "Nazwa firmy musi mieć co najmniej 3 znaki",
-	MessageLetters: "Wiadomość musi mieć co najmniej 20 znaków",
 	Terms: "Musisz zaakceptować naszą polityke prywatności",
+};
+
+export const ContactFormErrors = {
+	MessageLetters: "Wiadomość musi mieć co najmniej 20 znaków",
 	Sent: "Musisz odczekać 5 sekund zanim ponownie wyślesz formularz"
 };

@@ -1,4 +1,4 @@
-import {ContactFormErrors} from "./ErrorList";
+import {ContactInfoErrors, ContactFormErrors} from "./ErrorList";
 
 import ContainNumbers from "./functions/ContainNumbers";
 import StartWithPlus from "./functions/StartWithPlus";
@@ -13,62 +13,62 @@ class ContactValidation {
 		const ErrorsHighlight = [];
 
 		if(inputs.name !== '') {
-			if(inputs.name.length < 3) Errors.push(ContactFormErrors.NameLetters);
-			if(ContainNumbers(inputs.name)) Errors.push(ContactFormErrors.NameNumbers);
+			if(inputs.name.length < 3) Errors.push(ContactInfoErrors.NameLetters);
+			if(ContainNumbers(inputs.name)) Errors.push(ContactInfoErrors.NameNumbers);
 		}
 		else {
-			Errors.push(ContactFormErrors.Empty);
+			Errors.push(ContactInfoErrors.Empty);
 			ErrorsHighlight.push("name");
 		}
 
 		if(inputs.surname !== '') {
-			if(inputs.surname.length < 3) Errors.push(ContactFormErrors.SurnameLetters);
-			if(ContainNumbers(inputs.surname)) Errors.push(ContactFormErrors.SurnameNumbers);
+			if(inputs.surname.length < 3) Errors.push(ContactInfoErrors.SurnameLetters);
+			if(ContainNumbers(inputs.surname)) Errors.push(ContactInfoErrors.SurnameNumbers);
 		}
 		else {
-			Errors.push(ContactFormErrors.Empty);
+			Errors.push(ContactInfoErrors.Empty);
 			ErrorsHighlight.push("surname");
 		}
 
 		if(inputs.countrycode !== '') {
-			if(!StartWithPlus(inputs.countrycode)) Errors.push(ContactFormErrors.CountrycodePlus);
-			else if(!CountrycodeValidator(inputs.countrycode)) Errors.push(ContactFormErrors.CountrycodeIncorrect);
+			if(!StartWithPlus(inputs.countrycode)) Errors.push(ContactInfoErrors.CountrycodePlus);
+			else if(!CountrycodeValidator(inputs.countrycode)) Errors.push(ContactInfoErrors.CountrycodeIncorrect);
 		}
 		else {
-			Errors.push(ContactFormErrors.Empty);
+			Errors.push(ContactInfoErrors.Empty);
 			ErrorsHighlight.push("countrycode");
 		}
 
 		if(inputs.phone !== '') {
-			if(!PhoneValidator(inputs.phone)) Errors.push(ContactFormErrors.PhoneIncorrect);
+			if(!PhoneValidator(inputs.phone)) Errors.push(ContactInfoErrors.PhoneIncorrect);
 		}
 		else {
-			Errors.push(ContactFormErrors.Empty);
+			Errors.push(ContactInfoErrors.Empty);
 			ErrorsHighlight.push("phone");
 		}
 
 		if(inputs.email !== '') {
-			if(!EmailValidator(inputs.email)) Errors.push(ContactFormErrors.EmailIncorrect);
+			if(!EmailValidator(inputs.email)) Errors.push(ContactInfoErrors.EmailIncorrect);
 		}
 		else {
-			Errors.push(ContactFormErrors.Empty);
+			Errors.push(ContactInfoErrors.Empty);
 			ErrorsHighlight.push("email");
 		}
 
 		if(inputs.company !== '') {
-			if(inputs.company.length < 3) Errors.push(ContactFormErrors.CompanyLetters);
+			if(inputs.company.length < 3) Errors.push(ContactInfoErrors.CompanyLetters);
 		}
 
 		if(inputs.message !== '') {
 			if(inputs.message.length < 20) Errors.push(ContactFormErrors.MessageLetters);
 		}
 		else {
-			Errors.push(ContactFormErrors.Empty);
+			Errors.push(ContactInfoErrors.Empty);
 			ErrorsHighlight.push("message");
 		}
 
 		if(!inputs.terms) {
-			Errors.push(ContactFormErrors.Terms);
+			Errors.push(ContactInfoErrors.Terms);
 			ErrorsHighlight.push("terms");
 		}
 

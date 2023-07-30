@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ContactForm from "./contact/ContactForm";
+import ContactOffer from "./contact/ContactOffer";
 
 class Contact extends Component {
 	render() {
@@ -20,6 +21,9 @@ class Contact extends Component {
 								<div className="header-container">
 									<h2>Zapytanie ofertowe</h2>
 									<div className="divider mx-auto mb-2 mt-2" />
+								</div>
+								<div className="form-wrapper">
+									<ContactOffer />
 								</div>
 							</div>
 						</Col>
