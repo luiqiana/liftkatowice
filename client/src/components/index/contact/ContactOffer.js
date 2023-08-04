@@ -21,6 +21,7 @@ class ContactOffer extends Component {
 		this.DeviceTypeRef = React.createRef();
 		this.ContactInformationRef = React.createRef();
 		this.TermsRef = React.createRef();
+		this.SubmitRef = React.createRef();
 
 		this.state = {
 			serviceType: "installation",
@@ -41,6 +42,7 @@ class ContactOffer extends Component {
 		this.getContactInformation = this.getContactInformation.bind(this);
 		this.validateForm = this.validateForm.bind(this);
 		this.getTerms = this.getTerms.bind(this);
+		this.getDeviceType = this.getDeviceType.bind(this);
 	}
 
 	getTerms() {
@@ -55,6 +57,10 @@ class ContactOffer extends Component {
 		return this.ServiceTypeRef.current;
 	}
 
+	getDeviceType() {
+		return this.DeviceTypeRef.current;
+	}
+
 	getContactInformation() {
 		return this.ContactInformationRef.current;
 	}
@@ -63,15 +69,21 @@ class ContactOffer extends Component {
 		this.setState({
 			default: false,
 			serviceType: type,
+			deviceType: type === "maintenance" ? this.state.deviceType : "elevator",
 			type: (
 				<Type
 					key={1}
 					ref={this.TypeRef}
 					servicetype={type}
-					devicetype={this.state.deviceType}
+					devicetype={type === "maintenance" ? this.state.deviceType : "elevator"}
 				/>
 			)
 		});
+
+		this.getDeviceType().setState({
+			serviceType: type,
+			deviceType: type === "maintenance" ? [] : "elevator"
+		})
 	}
 
 	changeDeviceType = (type) => {

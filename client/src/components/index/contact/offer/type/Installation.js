@@ -529,7 +529,7 @@ class Installation extends Component {
 										Depth: this.state.platformDrive === "hydraulic" ? (this.state.platformShaftDimensionsDoneOption === 2 ? 1560 : 1560) : 1520,
 										Option: this.state.platformShaftDimensionsDoneOption
 									})} name="platformShaftDimensionsDone" ref={this.platformSelect} disabled={this.state.platformDrive === ""} onChange={(e) => {this.changeShaftDimensions(e)}}>
-										<option selected={this.state.platformShaftDimensionsDoneOption === 1} value={JSON.stringify({
+										<option value={JSON.stringify({
 											Option: 1
 										})}>{this.state.platformDrive !== "" ? "Inne (wpisz wymiary powyżej)" : "Musisz najpierw wybrać tym napędu"}</option>
 										{this.state.platformDrive !== "" ?

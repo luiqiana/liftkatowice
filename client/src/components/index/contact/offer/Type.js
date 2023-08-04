@@ -8,7 +8,6 @@ class Type extends Component {
 
 		this.state = {
 			elevatortype: "",
-
 			installationElevatorType: "",
 			installationElevatorStops: 2,
 			installationElevatorCapac: 100,
@@ -94,6 +93,11 @@ class Type extends Component {
 						change={this.changeInput}
 						devicetype={devicetype}
 					/>
+				);
+			case "maintenance":
+				return(
+					<>
+					</>
 				);
 			default: return null;
 		}
