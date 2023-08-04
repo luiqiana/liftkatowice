@@ -23,6 +23,7 @@ class ServiceType extends Component {
 		this.setState({
 			type: e.target.value,
 		});
+		this.props.change(e.target.value);
 	}
 
 	render() {

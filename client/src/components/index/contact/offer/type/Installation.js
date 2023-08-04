@@ -76,6 +76,11 @@ class Installation extends Component {
 					Width: e.target.value === "rope" ? "2300" : "2500"
 				}
 			});
+
+			this.props.change("installation", {
+				name: "elevatorShaftDimensions",
+				value: e.target.value === "rope" ? "2300" : "2500"
+			}, "Width");
 		}
 		else if(e.target.name === "platformDrive" && this.state.platformShaftDimensionsDoneOption !== 1) {
 			this.setState({
@@ -87,7 +92,23 @@ class Installation extends Component {
 					Depth: e.target.value === "hydraulic" ? (this.state.platformShaftDimensionsDoneOption === 2 ? "1560" : "1520") : "1520"
 				}
 			});
+
+			this.props.change("installation", {
+				name: "platformCapac",
+				value: e.target.value === "hydraulic" ? "400" : "300",
+			});
+
+			this.props.change("installation", {
+				name: "platformShaftDimensions",
+				value: {
+					Lifting: this.state.platformShaftDimensions.Lifting,
+					Width: e.target.value === "hydraulic" ? (this.state.platformShaftDimensionsDoneOption === 2 ? "1450" : "1310") : "1310",
+					Depth: e.target.value === "hydraulic" ? (this.state.platformShaftDimensionsDoneOption === 2 ? "1560" : "1520") : "1520"
+				}
+			}, "all");
 		}
+
+		this.props.change("installation", e.target);
 	}
 
 	changeNumberValue(e) {
@@ -100,8 +121,15 @@ class Installation extends Component {
 		if(type === "decrease" && this.state[state] <= (iType === "stops" ? 2 : 100)) return;
 		if(iType === "capac" && this.state[`${deviceType}LockCapacity`]) return;
 
+		const setValue = iType === "stops" ? (parseInt(this.state[state]) + value < 2 ? 2 : parseInt(this.state[state]) + value) : (parseInt(this.state[state]) + value < 100 ? 100 : parseInt(this.state[state]) + value);
+
 		this.setState({
-			[state]: iType === "stops" ? (parseInt(this.state[state]) + value < 2 ? 2 : parseInt(this.state[state]) + value) : (parseInt(this.state[state]) + value < 100 ? 100 : parseInt(this.state[state]) + value)
+			[state]: setValue
+		});
+
+		this.props.change("installation", {
+			name: state,
+			value: setValue.toString()
 		});
 	}
 
@@ -128,6 +156,20 @@ class Installation extends Component {
 						Depth: data.Depth.toString()
 					}
 				});
+
+				this.props.change("installation", {
+					name: deviceType + "Capac",
+					value: data.Capacity.toString()
+				});
+
+				this.props.change("installation", {
+					name: state,
+					value: {
+						Lifting: this.state[deviceType + "ShaftDimensions"].Lifting,
+						Width: data.Width.toString(),
+						Depth: data.Depth.toString()
+					}
+				}, "all");
 			}
 			else {
 				this.setState({
@@ -146,6 +188,11 @@ class Installation extends Component {
 				[type]: e.target.value
 			}
 		});
+
+		this.props.change("installation", {
+			name: state,
+			value: e.target.value.toString()
+		}, type);
 	}
 
 	render() {
@@ -254,42 +301,49 @@ class Installation extends Component {
 							</div>
 							<Row>
 								<Col xs={12} className="px-0">
-									<select className="contact-offer-input-select" name="elevatorShaftDimensionsDone" ref={this.elevatorSelect} onChange={(e) => {this.changeShaftDimensions(e)}}>
-										<option selected={this.state.elevatorShaftDimensionsDoneOption === 1} value={JSON.stringify({
+									<select className="contact-offer-input-select" name="elevatorShaftDimensionsDone" value={this.state.elevatorShaftDimensionsDoneOption === 1 ? JSON.stringify({
+										Option: 1
+									}) : JSON.stringify({
+										Capacity: this.state.elevatorShaftDimensionsDoneOption === 2 ? 630 : (this.state.elevatorShaftDimensionsDoneOption === 3 ? 800 : (this.state.elevatorShaftDimensionsDoneOption === 4 ? 1000 : (this.state.elevatorShaftDimensionsDoneOption === 5 ? 1125 : (this.state.elevatorShaftDimensionsDoneOption === 6 ? 1600 : 2000)))),
+										Width: this.state.elevatorShaftDimensionsDoneOption === 2 ? 1650 : (this.state.elevatorShaftDimensionsDoneOption === 3 ? 1650 : (this.state.elevatorShaftDimensionsDoneOption === 4 ? 1650 : (this.state.elevatorShaftDimensionsDoneOption === 5 ? 1750 : (this.state.elevatorShaftDimensionsDoneOption === 6 ? 2200 : (this.state.elevatorDrive === "rope" ? 2300 : 2500))))),
+										Depth: this.state.elevatorShaftDimensionsDoneOption === 2 ? 1800 : (this.state.elevatorShaftDimensionsDoneOption === 3 ? 2000 : (this.state.elevatorShaftDimensionsDoneOption === 4 ? 2500 : (this.state.elevatorShaftDimensionsDoneOption === 5 ? 2500 : (this.state.elevatorShaftDimensionsDoneOption === 6 ? 2800 : 3100)))),
+										Option: this.state.elevatorShaftDimensionsDoneOption
+									})} ref={this.elevatorSelect} onChange={(e) => {this.changeShaftDimensions(e)}}>
+										<option value={JSON.stringify({
 											Option: 1
 										})}>Inne (wpisz wymiary powyżej)</option>
-										<option selected={this.state.elevatorShaftDimensionsDoneOption === 2} value={JSON.stringify({
+										<option value={JSON.stringify({
 											Capacity: 630,
 											Width: 1650,
 											Depth: 1800,
 											Option: 2
 										})}>630kg/8 osób // Szyb: 1650x1800 // Kabina: 1100x1400</option>
-										<option selected={this.state.elevatorShaftDimensionsDoneOption === 3} value={JSON.stringify({
+										<option value={JSON.stringify({
 											Capacity: 800,
 											Width: 1650,
 											Depth: 2000,
 											Option: 3
 										})}>800kg/10 osób // Szyb: 1650x2000 // Kabina: 1100x1600</option>
-										<option selected={this.state.elevatorShaftDimensionsDoneOption === 4} value={JSON.stringify({
+										<option value={JSON.stringify({
 											Capacity: 1000,
 											Width: 1650,
 											Depth: 2500,
 											Option: 4
 										})}>1000kg/13 osób // Szyb: 1650x2500 // Kabina: 1100x2100</option>
-										<option selected={this.state.elevatorShaftDimensionsDoneOption === 5} value={JSON.stringify({
+										<option value={JSON.stringify({
 											Capacity: 1125,
 											Width: 1750,
 											Depth: 2500,
 											Option: 5
 										})}>1125kg/15 osób // Szyb: 1750x2500 // Kabina: 1200x2100</option>
-										<option selected={this.state.elevatorShaftDimensionsDoneOption === 6} value={JSON.stringify({
+										<option value={JSON.stringify({
 											Capacity: 1600,
 											Width: 2200,
 											Depth: 2800,
 											Option: 6
 										})}>1600kg/21 osób // Szyb: 2200x2800 // Kabina: 1400x2400</option>
 										{this.state.elevatorDrive !== "" ?
-											<option selected={this.state.elevatorShaftDimensionsDoneOption === 7} value={JSON.stringify({
+											<option value={JSON.stringify({
 												Capacity: 2000,
 												Width: this.state.elevatorDrive === "rope" ? 2300 : 2500,
 												Depth: 3100,
@@ -467,12 +521,19 @@ class Installation extends Component {
 							</div>
 							<Row>
 								<Col xs={12} className="px-0">
-									<select className={`contact-offer-input-select ${this.state.platformDrive === "" ? "contact-offer-input-select-disabled" : ""}`} name="platformShaftDimensionsDone" ref={this.platformSelect} disabled={this.state.platformDrive === ""} onChange={(e) => {this.changeShaftDimensions(e)}}>
+									<select className={`contact-offer-input-select ${this.state.platformDrive === "" ? "contact-offer-input-select-disabled" : ""}`} value={this.state.platformShaftDimensionsDoneOption === 1 ? JSON.stringify({
+										Option: 1
+									}) : JSON.stringify({
+										Capacity: this.state.platformDrive === "hydraulic" ? 400 : 300,
+										Width: this.state.platformDrive === "hydraulic" ? (this.state.platformShaftDimensionsDoneOption === 2 ? 1450 : 1150) : 1310,
+										Depth: this.state.platformDrive === "hydraulic" ? (this.state.platformShaftDimensionsDoneOption === 2 ? 1560 : 1560) : 1520,
+										Option: this.state.platformShaftDimensionsDoneOption
+									})} name="platformShaftDimensionsDone" ref={this.platformSelect} disabled={this.state.platformDrive === ""} onChange={(e) => {this.changeShaftDimensions(e)}}>
 										<option selected={this.state.platformShaftDimensionsDoneOption === 1} value={JSON.stringify({
 											Option: 1
 										})}>{this.state.platformDrive !== "" ? "Inne (wpisz wymiary powyżej)" : "Musisz najpierw wybrać tym napędu"}</option>
 										{this.state.platformDrive !== "" ?
-											<option selected={this.state.platformShaftDimensionsDoneOption === 2} value={JSON.stringify({
+											<option value={JSON.stringify({
 												Capacity: this.state.platformDrive === "hydraulic" ? 400 : 300,
 												Width: this.state.platformDrive === "hydraulic" ? 1450 : 1310,
 												Depth: this.state.platformDrive === "hydraulic" ? 1560 : 1520,
@@ -480,7 +541,7 @@ class Installation extends Component {
 											})}>{this.state.platformDrive === "hydraulic" ? "400kg/5 osób" : "300kg/4 osoby"} {"//"} Szyb: {this.state.platformDrive === "hydraulic" ? "1450x1560" : "1310x1520"} {"//"} Kabina: {this.state.platformDrive === "hydraulic" ? "1100x1400" : "900x1400"}</option>
 										: <></>}
 										{this.state.platformDrive === "hydraulic" ?
-											<option selected={this.state.platformShaftDimensionsDoneOption === 3} value={JSON.stringify({
+											<option value={JSON.stringify({
 												Capacity: 400,
 												Width: 1150,
 												Depth: 1560,
@@ -631,7 +692,7 @@ class Installation extends Component {
 						<Container fluid>
 							<Row>
 								<Col xs={12} className="px-0">
-									<input className="contact-offer-input-lifting ps-1" type="text" id="inputContactOfferEscalatorLifting" placeholder="Wysokość podnoszenia" title="Wysokość podnoszenia" name="escalatoLifting" value={this.state.escalatoLifting} onChange={(e) => this.changeInput(e)}/>
+									<input className="contact-offer-input-lifting ps-1" type="text" id="inputContactOfferWalkwayLifting" placeholder="Wysokość podnoszenia" title="Wysokość podnoszenia" name="walkwayyLifting" value={this.state.walkwayyLifting} onChange={(e) => this.changeInput(e)}/>
 								</Col>
 							</Row>
 						</Container>

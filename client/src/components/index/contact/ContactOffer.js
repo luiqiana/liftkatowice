@@ -60,7 +60,18 @@ class ContactOffer extends Component {
 	}
 
 	changeServiceType = (type) => {
-
+		this.setState({
+			default: false,
+			serviceType: type,
+			type: (
+				<Type
+					key={1}
+					ref={this.TypeRef}
+					servicetype={type}
+					devicetype={this.state.deviceType}
+				/>
+			)
+		});
 	}
 
 	changeDeviceType = (type) => {
