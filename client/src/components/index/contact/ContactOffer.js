@@ -69,13 +69,13 @@ class ContactOffer extends Component {
 		this.setState({
 			default: false,
 			serviceType: type,
-			deviceType: type === "maintenance" ? this.state.deviceType : "elevator",
+			deviceType: type === "maintenance" ? [] : "elevator",
 			type: (
 				<Type
 					key={1}
 					ref={this.TypeRef}
 					servicetype={type}
-					devicetype={type === "maintenance" ? this.state.deviceType : "elevator"}
+					devicetype={type === "maintenance" ? [] : "elevator"}
 				/>
 			)
 		});

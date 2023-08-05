@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 import Installation from "./type/Installation";
+import Maintenance from "./type/Maintenance";
 
 class Type extends Component {
 	constructor(props) {
@@ -45,7 +46,22 @@ class Type extends Component {
 
 			installationWalkwayyAngle: "",
 			installationWalkwayyAngleOther: "",
-			installationWalkwayyLifting: ""
+			installationWalkwayyLifting: "",
+
+			maintenanceElevatorCount: 1,
+			maintenanceElevatorInfo: "",
+
+			maintenancePlatformCount: 1,
+			maintenancePlatformInfo: "",
+
+			maintenanceEscalatoCount: 1,
+			maintenanceEscalatoInfo: "",
+
+			maintenanceWalkwayyCount: 1,
+			maintenanceWalkwayyInfo: "",
+
+			maintenancePostalCode: "",
+			maintenanceCity: ""
 		}
 	}
 
@@ -81,7 +97,6 @@ class Type extends Component {
 		}
 	}
 
-
 	render() {
 		const {servicetype, devicetype} = this.props;
 
@@ -96,8 +111,11 @@ class Type extends Component {
 				);
 			case "maintenance":
 				return(
-					<>
-					</>
+					<Maintenance
+						key={1}
+						change={this.changeInput}
+						devicetype={devicetype}
+					/>
 				);
 			default: return null;
 		}
