@@ -1161,6 +1161,22 @@ section#contact {
 						}
 					}
 
+					textarea.contact-offer-textarea-input {
+						width: 100%;
+						border: 2px solid #ff0000;
+						border-radius: 15px;
+						resize: none;
+						text-align: start;
+						transition: 0.5s;
+						background-color: #ffffff;
+						outline: none;
+						height: 100px;
+
+						&:focus {
+							border: 2px solid #dddddd;
+						}
+					}
+
 					input.contact-offer-input-dropdown-other {
 						width: 100%;
 						border: 2px solid #ff0000;

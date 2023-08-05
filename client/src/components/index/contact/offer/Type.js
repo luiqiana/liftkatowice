@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 import Installation from "./type/Installation";
 import Maintenance from "./type/Maintenance";
+import Service from "./type/Service";
 
 class Type extends Component {
 	constructor(props) {
@@ -60,8 +61,14 @@ class Type extends Component {
 			maintenanceWalkwayyCount: 1,
 			maintenanceWalkwayyInfo: "",
 
-			maintenancePostalCode: "",
-			maintenanceCity: ""
+			maintenancePostalcode: "",
+			maintenanceCity: "",
+
+			serviceDeviceInfo: "",
+			serviceDeviceError: "",
+
+			servicePostalcode: "",
+			serviceCity: ""
 		}
 	}
 
@@ -112,6 +119,14 @@ class Type extends Component {
 			case "maintenance":
 				return(
 					<Maintenance
+						key={1}
+						change={this.changeInput}
+						devicetype={devicetype}
+					/>
+				);
+			case "service":
+				return(
+					<Service
 						key={1}
 						change={this.changeInput}
 						devicetype={devicetype}
