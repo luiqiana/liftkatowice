@@ -13,7 +13,12 @@ class Service extends Component {
 			deviceInfo: "",
 			deviceError: "",
 			postalcode: "",
-			city: ""
+			city: "",
+
+			deviceInfoHighlight: "",
+			deviceErrorHighlight: "",
+			servicePostalcodeHighlight: "",
+			serviceCityHighlight: ""
 		}
 	}
 
@@ -49,7 +54,7 @@ class Service extends Component {
 					<Container fluid>
 						<Row>
 							<Col xs={12} className="px-0">
-								<textarea className={`contact-offer-textarea-input ps-1`} name="deviceInfo" value={this.state.deviceInfo} placeholder={placeholder} title={placeholder} onChange={(e) => this.changeInput(e)} />
+								<textarea className={`contact-offer-textarea-input ps-1 ${this.state.deviceInfoHighlight}`} name="deviceInfo" value={this.state.deviceInfo} placeholder={placeholder} title={placeholder} onChange={(e) => this.changeInput(e)} />
 							</Col>
 						</Row>
 					</Container>
@@ -61,7 +66,7 @@ class Service extends Component {
 					<Container fluid>
 						<Row>
 							<Col xs={12} className="px-0">
-								<textarea className={`contact-offer-textarea-input ps-1`} name="deviceError" value={this.state.deviceError} placeholder="Opisz jak najdokładniej błąd" title="Opisz jak najdokładniej błąd" onChange={(e) => this.changeInput(e)} />
+								<textarea className={`contact-offer-textarea-input ps-1 ${this.state.deviceErrorHighlight}`} name="deviceError" value={this.state.deviceError} placeholder="Opisz jak najdokładniej błąd" title="Opisz jak najdokładniej błąd" onChange={(e) => this.changeInput(e)} />
 							</Col>
 						</Row>
 					</Container>
@@ -73,10 +78,10 @@ class Service extends Component {
 					<Container fluid>
 						<Row>
 							<Col col={6} className="p-0 pe-0 pe-md-2">
-								<input type="text" className={`contact-offer-text-input ps-1`} name="postalcode" placeholder="Kod pocztowy" title="Kod pocztowy" value={this.state.postalcode} onChange={(e) => this.changeInput(e)} />
+								<input type="text" className={`contact-offer-text-input ps-1 ${this.state.servicePostalcodeHighlight}`} name="postalcode" placeholder="Kod pocztowy" title="Kod pocztowy" value={this.state.postalcode} onChange={(e) => this.changeInput(e)} />
 							</Col>
 							<Col md={6} className="p-0 ps-0 ps-md-2 mt-2 mt-md-0">
-								<input type="text" className={`contact-offer-text-input ps-1`} name="city" placeholder="Miejscowość" title="Miejscowość" value={this.state.city} onChange={(e) => this.changeInput(e)} />
+								<input type="text" className={`contact-offer-text-input ps-1 ${this.state.serviceCityHighlight}`} name="city" placeholder="Miejscowość" title="Miejscowość" value={this.state.city} onChange={(e) => this.changeInput(e)} />
 							</Col>
 						</Row>
 					</Container>

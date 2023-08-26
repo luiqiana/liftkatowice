@@ -1123,6 +1123,10 @@ section#contact {
 							background-color: #ff0000;
 							color: #ffffff;
 						}
+
+						&.highlight {
+							background-color: rgba(255, 0, 0, 0.2);
+						}
 					}
 
 					input.contact-offer-input-dimensions {
@@ -1144,6 +1148,10 @@ section#contact {
 							cursor: not-allowed;
 
 						}
+
+						&.highlight {
+							background-color: rgba(255, 0, 0, 0.2);
+						}
 					}
 
 					input.contact-offer-text-input {
@@ -1158,6 +1166,10 @@ section#contact {
 
 						&:focus {
 							border: 2px solid #dddddd;
+						}
+
+						&.highlight {
+							background-color: rgba(255, 0, 0, 0.2);
 						}
 					}
 
@@ -1175,18 +1187,26 @@ section#contact {
 						&:focus {
 							border: 2px solid #dddddd;
 						}
+
+						&.highlight {
+							background-color: rgba(255, 0, 0, 0.2);
+						}
 					}
 
 					input.contact-offer-input-dropdown-other {
 						width: 100%;
 						border: 2px solid #ff0000;
 						border-radius: 15px;
-						transition: border 0.5s;
+						transition: border 0.5s, background-color 0.5s;
 						background-color: #ffffff;
 						outline: none;
 
 						&:focus {
 							border: 2px solid #dddddd;
+						}
+
+						&.highlight {
+							background-color: rgba(255, 0, 0, 0.2);
 						}
 					}
 
@@ -1200,6 +1220,10 @@ section#contact {
 
 						&:focus {
 							border: 2px solid #dddddd;
+						}
+
+						&.highlight {
+							background-color: rgba(255, 0, 0, 0.2);
 						}
 					}
 
@@ -1248,6 +1272,10 @@ section#contact {
 
 								&:focus {
 									border: 2px solid #dddddd;
+								}
+
+								&.highlight {
+									background-color: rgba(255, 0, 0, 0.2);
 								}
 							}
 						}
@@ -1359,6 +1387,10 @@ section#contact {
 									border-bottom: 2px solid #dddddd;
 								}
 
+								&.highlight {
+									background-color: rgba(255, 0, 0, 0.2);
+								}
+
 								&.contact-offer-number-button-disabled {
 									border-top: 2px solid #dddddd;
 									border-bottom: 2px solid #dddddd;
@@ -1395,6 +1427,10 @@ section#contact {
 								&:focus {
 									border-top: 2px solid #dddddd;
 									border-bottom: 2px solid #dddddd;
+								}
+
+								&.highlight {
+									background-color: rgba(255, 0, 0, 0.2);
 								}
 							}
 						}

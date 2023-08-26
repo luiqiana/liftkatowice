@@ -70,10 +70,135 @@ class Type extends Component {
 			servicePostalcode: "",
 			serviceCity: ""
 		}
+
+		this.InstallationRef = React.createRef();
+		this.MaintenanceRef = React.createRef();
+		this.ServiceRef = React.createRef();
 	}
 
 	componentDidMount() {
 		this.changeInput = this.changeInput.bind(this);
+		this.getInstallation = this.getInstallation.bind(this);
+		this.getMaintenance = this.getMaintenance.bind(this);
+		this.getService = this.getService.bind(this);
+	}
+
+	getInstallation() {
+		return this.InstallationRef.current;
+	}
+
+	getMaintenance() {
+		return this.MaintenanceRef.current;
+	}
+
+	getService() {
+		return this.ServiceRef.current;
+	}
+
+	highlightInputs = (type, inputs , hl) => {
+
+		if(type === "set") {
+			const StartElement = (hl.includes("terms") ? 1 : 0) + (hl.includes("name") ? 1 : 0) + (hl.includes("surname") ? 1 : 0) + (hl.includes("countrycode") ? 1 : 0) + (hl.includes("phone") ? 1 : 0) + (hl.includes("email") ? 1 : 0) + (hl.includes("deviceType") ? 1 : 0) + (hl.includes("serviceType") ? 1 : 0);
+			const NoEI = Object.keys(hl).length;
+
+			if(inputs.serviceType === "installation") {
+				const InstallationRef = this.getInstallation();
+
+				for(let i = StartElement; i < NoEI; i++) {
+					InstallationRef.setState({
+						[`${hl[i]}Highlight`]: "highlight"
+					});
+				}
+			}
+			else if(inputs.serviceType === "maintenance") {
+				const MaintenanceRef = this.getMaintenance();
+
+				for(let i = StartElement; i < NoEI; i++) {
+					MaintenanceRef.setState({
+						[`${hl[i]}Highlight`]: "highlight"
+					});
+				}
+			}
+			else if(inputs.serviceType === "service") {
+				const ServiceRef = this.getService();
+
+				for(let i = StartElement; i < NoEI; i++) {
+					ServiceRef.setState({
+						[`${hl[i]}Highlight`]: "highlight"
+					});
+				}
+			}
+		}
+		else if(type === "clear") {
+			if(inputs.serviceType === "installation") {
+				const InstallationRef = this.getInstallation();
+
+				InstallationRef.setState({
+					elevatorTypeHighlight: "",
+					elevatorStopsHighlight: "",
+					elevatorCapacityHighlight: "",
+					elevatorDriveHighlight: "",
+					elevatorShaftDimensionsLiftingHighlight: "",
+					elevatorShaftDimensionsWidthHighlight: "",
+					elevatorShaftDimensionsDepthHighlight: "",
+					elevatorCabinFinishHighlight: "",
+					elevatorCabinFinishOtherHighlight: "",
+					elevatorDoorsFinishHighlight: "",
+					elevatorDoorsFinishOtherHighlight: "",
+
+					platformDriveHighlight: "",
+					platformStopsHighlight: "",
+					platformCapacityHighlight: "",
+					platformShaftHighlight: "",
+					platformShaftOtherHighlight: "",
+					platformShaftDimensionsLiftingHighlight: "",
+					platformShaftDimensionsWidthHighlight: "",
+					platformShaftDimensionsDepthHighlight: "",
+					platformCabinFinishHighlight: "",
+					platformCabinFinishOtherHighlight: "",
+					platformDoorsFinishHighlight: "",
+					platformDoorsFinishOtherHighlight: "",
+
+					escalatorAngleHighlight: "",
+					escalatorAngleOtherHighlight: "",
+					escalatorLiftingHighlight: "",
+
+					walkwayAngleHighlight: "",
+					walkwayAngleOtherHighlight: "",
+					walkwayLiftingHighlight: "",
+				});
+			}
+			else if(inputs.serviceType === "maintenance") {
+				const MaintenanceRef = this.getMaintenance();
+
+				MaintenanceRef.setState({
+					elevatorCountHighlight: "",
+					elevatorInfoHighlight: "",
+
+					platformCountHighlight: "",
+					platformInfoHighlight: "",
+
+					escalatorCountHighlight: "",
+					escalatorInfoHighlight: "",
+
+					walkwayCountHighlight: "",
+					walkwayInfoHighlight: "",
+
+					maintenancePostalcodeHighlight: "",
+					maintenanceCityHighlight: ""
+				});
+			}
+			else if(inputs.serviceType === "service") {
+				const ServiceRef = this.getService();
+
+				ServiceRef.setState({
+					deviceInfoHighlight: "",
+					deviceErrorHighlight: "",
+					servicePostalcodeHighlight: "",
+					serviceCityHighlight: ""
+				})
+			}
+		}
 	}
 
 	changeInput = (type, inp, dimension) => {
@@ -114,6 +239,7 @@ class Type extends Component {
 						key={1}
 						change={this.changeInput}
 						devicetype={devicetype}
+						ref={this.InstallationRef}
 					/>
 				);
 			case "maintenance":
@@ -122,6 +248,7 @@ class Type extends Component {
 						key={1}
 						change={this.changeInput}
 						devicetype={devicetype}
+						ref={this.MaintenanceRef}
 					/>
 				);
 			case "service":
@@ -130,6 +257,7 @@ class Type extends Component {
 						key={1}
 						change={this.changeInput}
 						devicetype={devicetype}
+						ref={this.ServiceRef}
 					/>
 				);
 			default: return null;

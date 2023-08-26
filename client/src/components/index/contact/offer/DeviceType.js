@@ -11,7 +11,8 @@ class DeviceType extends Component {
 
 		this.state = {
 			serviceType: "installation",
-			deviceType: "elevator"
+			deviceType: "elevator",
+			highlight: ""
 		};
 	}
 
@@ -39,19 +40,19 @@ class DeviceType extends Component {
 						<Row>
 							<Col sm={6} xl={3} className="px-0 pe-sm-1">
 								<input className="contact-offer-input-radio" type={this.state.serviceType === "maintenance" ? "checkbox" : "radio"} id="inputContactOfferDevicetypeElevator" name="inputContactOfferDevicetypeElevator" value="elevator" checked={this.state.serviceType === "maintenance" ? this.state.deviceType.includes("elevator") : this.state.deviceType === "elevator"} onChange={(e) => this.changeInput(e)}/>
-								<label className="contact-offer-label-radio" htmlFor="inputContactOfferDevicetypeElevator">Dźwig</label>
+								<label className={`contact-offer-label-radio ${this.state.highlight}`} htmlFor="inputContactOfferDevicetypeElevator">Dźwig</label>
 							</Col>
 							<Col sm={6} xl={3} className="px-0 px-sm-1 mt-2 mt-sm-0">
 								<input className="contact-offer-input-radio" type={this.state.serviceType === "maintenance" ? "checkbox" : "radio"} id="inputContactOfferDevicetypePlatform" name="inputContactOfferDevicetypePlatform" value="platform" checked={this.state.serviceType === "maintenance" ? this.state.deviceType.includes("platform") : this.state.deviceType === "platform"} onChange={(e) => this.changeInput(e)}/>
-								<label className="contact-offer-label-radio" htmlFor="inputContactOfferDevicetypePlatform">Platforma</label>
+								<label className={`contact-offer-label-radio ${this.state.highlight}`} htmlFor="inputContactOfferDevicetypePlatform">Platforma</label>
 							</Col>
 							<Col sm={6} xl={3} className="px-0 px-sm-1 mt-2 mt-xl-0">
 								<input className="contact-offer-input-radio" type={this.state.serviceType === "maintenance" ? "checkbox" : "radio"} id="inputContactOfferDevicetypeEscalator" name="inputContactOfferDevicetypeEscalator" value="escalator" checked={this.state.serviceType === "maintenance" ? this.state.deviceType.includes("escalator") : this.state.deviceType === "escalator"} onChange={(e) => this.changeInput(e)}/>
-								<label className="contact-offer-label-radio" htmlFor="inputContactOfferDevicetypeEscalator">Schody ruch.</label>
+								<label className={`contact-offer-label-radio ${this.state.highlight}`} htmlFor="inputContactOfferDevicetypeEscalator">Schody ruch.</label>
 							</Col>
 							<Col sm={6} xl={3} className="px-0 ps-sm-1 mt-2 mt-xl-0">
 								<input className="contact-offer-input-radio" type={this.state.serviceType === "maintenance" ? "checkbox" : "radio"} id="inputContactOfferDevicetypeWalkway" name="inputContactOfferDevicetypeWalkway" value="walkway" checked={this.state.serviceType === "maintenance" ? this.state.deviceType.includes("walkway") : this.state.deviceType === "walkway"} onChange={(e) => this.changeInput(e)}/>
-								<label className="contact-offer-label-radio" htmlFor="inputContactOfferDevicetypeWalkway">Chodniki ruch.</label>
+								<label className={`contact-offer-label-radio ${this.state.highlight}`} htmlFor="inputContactOfferDevicetypeWalkway">Chodniki ruch.</label>
 							</Col>
 						</Row>
 					</Container>

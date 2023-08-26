@@ -12,6 +12,7 @@ class ServiceType extends Component {
 
 		this.state = {
 			type: "installation",
+			highlight: ""
 		};
 	}
 
@@ -37,15 +38,15 @@ class ServiceType extends Component {
 						<Row>
 							<Col lg={4} className="px-0 pe-lg-2">
 								<input className="contact-offer-input-radio" type="radio" id="inputContactOfferServicetypeInstallation" name="inputContactOfferServicetypeInstallation" value="installation" checked={this.state.type === "installation"} onChange={(e) => this.changeInput(e)}/>
-								<label className="contact-offer-label-radio" htmlFor="inputContactOfferServicetypeInstallation">Montaż</label>
+								<label className={`contact-offer-label-radio ${this.state.highlight}`} htmlFor="inputContactOfferServicetypeInstallation">Montaż</label>
 							</Col>
 							<Col lg={4} className="px-0 px-lg-1 mt-2 mt-lg-0">
 								<input className="contact-offer-input-radio" type="radio" id="inputContactOfferServicetypeMaintenance" name="inputContactOfferServicetypeMaintenance" value="maintenance" checked={this.state.type === "maintenance"} onChange={(e) => this.changeInput(e)}/>
-								<label className="contact-offer-label-radio" htmlFor="inputContactOfferServicetypeMaintenance">Konserwacja</label>
+								<label className={`contact-offer-label-radio ${this.state.highlight}`} htmlFor="inputContactOfferServicetypeMaintenance">Konserwacja</label>
 							</Col>
 							<Col lg={4} className="px-0 ps-lg-2 mt-2 mt-lg-0">
 								<input className="contact-offer-input-radio" type="radio" id="inputContactOfferServicetypeService" name="inputContactOfferServicetypeService" value="service" checked={this.state.type === "service"} onChange={(e) => this.changeInput(e)}/>
-								<label className="contact-offer-label-radio" htmlFor="inputContactOfferServicetypeService">Serwis</label>
+								<label className={`contact-offer-label-radio ${this.state.highlight}`} htmlFor="inputContactOfferServicetypeService">Serwis</label>
 							</Col>
 						</Row>
 					</Container>
