@@ -138,7 +138,7 @@ module.exports = {
 									</tr>
 								` : ''}
 								<tr>
-									<th>Numer telefonu</th>
+									<th>Wiadomość</th>
 									<td>${data.message}</td>
 								</tr>
 							</table>
@@ -304,7 +304,7 @@ module.exports = {
 									</tr>
 								` : ''}
 								<tr>
-									<th>Numer telefonu</th>
+									<th>Wiadomość</th>
 									<td>${data.message}</td>
 								</tr>
 							</table>

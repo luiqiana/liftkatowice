@@ -81,6 +81,7 @@ class Type extends Component {
 		this.getInstallation = this.getInstallation.bind(this);
 		this.getMaintenance = this.getMaintenance.bind(this);
 		this.getService = this.getService.bind(this);
+		this.highlightInputs = this.highlightInputs.bind(this);
 	}
 
 	getInstallation() {
@@ -198,6 +199,140 @@ class Type extends Component {
 					serviceCityHighlight: ""
 				})
 			}
+		}
+	}
+
+	resetForm = (service) => {
+		this.setState({
+			elevatortype: "",
+			installationElevatorType: "",
+			installationElevatorStops: 2,
+			installationElevatorCapac: 100,
+			installationElevatorDrive: "",
+			installationElevatorShaftDimensions: {
+				Lifting: "",
+				Width: "",
+				Depth: "",
+			},
+			installationElevatorShaftDimensionsDoneOption: 1,
+			installationElevatorCabinFinish: "",
+			installationElevatorCabinFinishOther: "",
+			installationElevatorDoorsFinish: "",
+			installationElevatorDoorsFinishOther: "",
+
+			installationPlatformDrive: "",
+			installationPlatformStops: 2,
+			installationPlatformCapac: 100,
+			installationPlatformShaft: "",
+			installationPlatformShaftOther: "",
+			installationPlatformShaftDimensions: {
+				Lifting: "",
+				Width: "",
+				Depth: "",
+			},
+			installationPlatformShaftDimensionsDoneOption: 1,
+			installationPlatformCabinFinish: "",
+			installationPlatformCabinFinishOther: "",
+			installationPlatformDoorsFinish: "",
+			installationPlatformDoorsFinishOther: "",
+
+			installationEscalatoAngle: "",
+			installationEscalatoAngleOther: "",
+			installationEscalatoLifting: "",
+
+			installationWalkwayyAngle: "",
+			installationWalkwayyAngleOther: "",
+			installationWalkwayyLifting: "",
+
+			maintenanceElevatorCount: 1,
+			maintenanceElevatorInfo: "",
+
+			maintenancePlatformCount: 1,
+			maintenancePlatformInfo: "",
+
+			maintenanceEscalatoCount: 1,
+			maintenanceEscalatoInfo: "",
+
+			maintenanceWalkwayyCount: 1,
+			maintenanceWalkwayyInfo: "",
+
+			maintenancePostalcode: "",
+			maintenanceCity: "",
+
+			serviceDeviceInfo: "",
+			serviceDeviceError: "",
+
+			servicePostalcode: "",
+			serviceCity: ""
+		});
+
+		if(service === "installation") {
+			this.getInstallation().setState({
+				elevatorType: "",
+				elevatorStops: 2,
+				elevatorCapac: 100,
+				elevatorDrive: "",
+				elevatorShaftDimensions: {
+					Lifting: "",
+					Width: "",
+					Depth: "",
+				},
+				elevatorLockCapacity: false,
+				elevatorLockShaftDimensions: false,
+				elevatorShaftDimensionsDoneOption: 1,
+				elevatorCabinFinish: "",
+				elevatorCabinFinishOther: "",
+				elevatorDoorsFinish: "",
+				elevatorDoorsFinishOther: "",
+
+				platformDrive: "",
+				platformStops: 2,
+				platformCapac: 100,
+				platformLockCapacity: false,
+				platformShaft: "",
+				platformShaftOther: "",
+				platformShaftDimensions: {
+					Lifting: "",
+					Width: "",
+					Depth: "",
+				},
+				platformLockShaftDimensions: false,
+				platformShaftDimensionsDoneOption: 1,
+				platformCabinFinish: "",
+				platformCabinFinishOther: "",
+				platformDoorsFinish: "",
+				platformDoorsFinishOther: "",
+
+				escalatoAngle: "",
+				escalatoAngleOther: "",
+				escalatoLifting: "",
+
+				walkwayyAngle: "",
+				walkwayyAngleOther: "",
+				walkwayyLifting: ""
+			});
+		}
+		else if(service === "maintenance") {
+			this.getMaintenance().setState({
+				elevatorCount: 1,
+				platformCount: 1,
+				escalatoCount: 1,
+				walkwayyCount: 1,
+				elevatorInfo: "",
+				platformInfo: "",
+				escalatoInfo: "",
+				walkwayyInfo: "",
+				postalcode: "",
+				city: ""
+			});
+		}
+		else if(service === "service") {
+			this.getService().setState({
+				deviceInfo: "",
+				deviceError: "",
+				postalcode: "",
+				city: ""
+			});
 		}
 	}
 

@@ -85,7 +85,7 @@ class Installation extends Component {
 
 			walkwayAngleHighlight: "",
 			walkwayAngleOtherHighlight: "",
-			walkwayLiftingHighlight: "",
+			walkwayLiftingHighlight: ""
 		}
 
 		this.elevatorSelect = React.createRef();

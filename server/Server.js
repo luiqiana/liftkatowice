@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 
 const formMailer = require("./components/mailer/form/Sender");
+const offerMailer = require("./components/mailer/offer/Sender");
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -15,6 +16,14 @@ app.post("/api/mailer/form", async (req, res) => {
 		}
 	);
 	res.end();
+});
+
+app.post("/api/mailer/offer", async (req, res) => {
+	res.json(
+		{
+			"sent": await offerMailer.sendEmail(req.body)
+		}
+	);
 });
 
 app.get("*", (req, res) => {

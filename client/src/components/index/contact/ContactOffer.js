@@ -32,7 +32,8 @@ class ContactOffer extends Component {
 			deviceType: "elevator",
 			type: "",
 			additionalInfo: "",
-			errors: <></>
+			errors: <></>,
+			sent: ""
 		};
 	}
 
@@ -48,6 +49,10 @@ class ContactOffer extends Component {
 		this.getDeviceType = this.getDeviceType.bind(this);
 		this.getType = this.getType.bind(this);
 		this.createInput = this.createInput.bind(this);
+		this.getSubmit = this.getSubmit.bind(this);
+		this.showAlert = this.showAlert.bind(this);
+		this.closeAlert = this.closeAlert.bind(this);
+		this.loader = this.loader.bind(this);
 	}
 
 	getTerms() {
@@ -72,6 +77,10 @@ class ContactOffer extends Component {
 
 	getType() {
 		return this.TypeRef.current;
+	}
+
+	getSubmit() {
+		return this.SubmitRef.current;
 	}
 
 	changeServiceType = (type) => {
@@ -270,16 +279,121 @@ class ContactOffer extends Component {
 				...input,
 				deviceInfo: TypeState.serviceDeviceInfo,
 				deviceError: TypeState.serviceDeviceError,
-				postalcode: TypeState.maintenancePostalcode,
-				city: TypeState.maintenanceCity
+				postalcode: TypeState.servicePostalcode,
+				city: TypeState.serviceCity
 			};
 		}
 
 		return input;
 	}
 
+	showAlert(type) {
+		this.getAlert().setState({
+			type: type,
+			show: true
+		});
+	}
+
+	closeAlert = () => {
+		this.getAlert().setState({
+			show: false
+		});
+	}
+
+	loader(loading) {
+		this.getSubmit().setState({
+			loader: loading
+		});
+	}
+
+	resetForm() {
+		this.getSubmit().setState({
+			loader: "text"
+		});
+
+		this.getType().resetForm(this.state.serviceType);
+
+		this.setState({
+			serviceType: "installation",
+			default: true,
+			deviceType: "elevator",
+			type: "",
+			additionalInfo: "",
+		});
+
+		this.getSubmit().setState({
+			loader: "text"
+		});
+
+		this.getContactInformation().setState({
+			name: "",
+			surname: "",
+			countrycode: "",
+			phone: "",
+			email: "",
+			company: ""
+		});
+
+		this.getTerms().setState({
+			terms: false
+		});
+
+		this.getServiceType().setState({
+			type: "installation"
+		});
+
+		this.getDeviceType().setState({
+			serviceType: "installation",
+			deviceType: "elevator"
+		});
+
+		setTimeout(() => {
+			this.closeAlert();
+			this.setState({
+				sent: ""
+			})
+		}, 5000);
+	}
+
 	formSubmit = (input) => {
-		console.log("validated, input: \n" + input);
+		input.phone = (input.countrycode + input.phone).toString();
+		this.loader("loader")
+		console.log(input);
+
+		fetch(`${process.env.REACT_APP_API_DOMAIN}/api/mailer/offer`, {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(input)
+		}).then(
+			response => response.json()
+		).then(
+			data => {
+				this.setState({
+					sent: data.sent
+				});
+				this.showAlert(data.sent);
+				this.resetForm();
+			}
+		).catch(
+			error => {
+				this.setState({
+					sent: "false"
+				});
+				this.showAlert("false");
+				this.loader("text");
+				console.log(error);
+
+				setTimeout(() => {
+					this.closeAlert();
+					this.setState({
+						sent: ""
+					})
+				}, 5000);
+			}
+		);
 	}
 
 	validateForm = () => {
