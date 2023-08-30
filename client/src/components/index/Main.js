@@ -4,14 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Elevator from "../../imgs/placeholder.webp";
-
 class Main extends Component {
 	render() {
 		return(
 			<section id="indexMain">
 				<Container className="h-100">
 					<Row className="h-100">
+						<Col md={6} className="d-none d-md-block" />
 						<Col md={6} className="h-100">
 							<div className="text-container">
 								<div className="text-wrapper">
@@ -26,11 +25,6 @@ class Main extends Component {
 										<button type="button" className="btn btn-outline-danger" onClick={() => window.location.href="#about"}>Dowiedz się więcej</button>
 									</div>
 								</div>
-							</div>
-						</Col>
-						<Col md={6} className="d-none d-md-block">
-							<div className="img-container">
-								<img src={Elevator} alt="Winda" />
 							</div>
 						</Col>
 					</Row>
