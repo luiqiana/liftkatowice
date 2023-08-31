@@ -183,10 +183,19 @@ footer {
 /*
 	Index
 */
-// Main
-section#indexMain {
+// Main && error
+section#indexMain, section#error404 {
 	background: url("../../imgs/index/mainbackground.webp");
 	height: calc(100vh - 60px);
+
+	button.btn-outline-danger {
+		transition: 0.5s;
+
+		&:hover {
+			color: #ffffff;
+			background-color: #ff0000;
+		}
+	}
 
 	div.text-container {
 		margin-left: auto;
