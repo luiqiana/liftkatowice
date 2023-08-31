@@ -179,6 +179,18 @@ footer {
 		}
 	}
 }
+/*
+	Legals
+*/
+// Terms
+section#terms {
+	width: 100%;
+
+	iframe {
+		width: 100%;
+		height: calc(100vh - 60px);
+	}
+}
 
 /*
 	Index

@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 
 import Index from "./components/Index";
 import Error404 from "./components/errors/Error404";
+import Terms from "./components/Terms";
 
 class App extends Component {
 	render() {
@@ -18,6 +19,7 @@ class App extends Component {
 				<Navigation />
 				<Routes>
 					<Route path="/" element={<Index />} />
+					<Route path="/legals/terms" element={<Terms />} />
 
 					<Route path="*" element={<Error404 />} />
 				</Routes>
