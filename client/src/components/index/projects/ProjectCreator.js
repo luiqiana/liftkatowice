@@ -11,9 +11,14 @@ class ProjectCreator extends Component {
 		this.state = {
 			open: false
 		};
+
+		this.showMoreRef = React.createRef();
 	}
 
 	showMore = () => {
+		const divHeight = this.showMoreRef.current.scrollHeight;
+		this.showMoreRef.current.style.maxHeight = this.state.open ? "0px" : `${divHeight}px`;
+
 		this.setState({
 			open: !this.state.open
 		});
@@ -65,7 +70,7 @@ class ProjectCreator extends Component {
 		}
 
 		projects.push(projectsNC);
-		projects.push(<div key="15" className={`projects-collapse projects-collapse-${this.state.open ? "show" : "hide"}`}>{projectsC}</div>);
+		projects.push(<div key="15" ref={this.showMoreRef} className="projects-collapse">{projectsC}</div>);
 		projects.push(
 			<div key="10" className="show-more-container text-center mt-4">
 				<p className="projects-collapse-button" onClick={this.showMore}>{this.state.open ? "Pokaż mniej" : "Pokaż więcej"}</p>

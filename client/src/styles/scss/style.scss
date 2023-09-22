@@ -451,11 +451,7 @@ section#projects {
 	div.projects-collapse {
 		max-height: 0;
 		overflow: hidden;
-		transition: max-height 1s ease-in-out;
-
-		&.projects-collapse-show {
-			max-height: 15000px;
-		}
+		transition: max-height 0.3s ease-in-out;
 	}
 
 	div.show-more-container {

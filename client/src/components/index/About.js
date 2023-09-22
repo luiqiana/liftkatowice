@@ -34,7 +34,7 @@ class About extends Component {
 						</Col>
 						<Col lg={7} className="about-img-col p-0" id="AboutColImg">
 							<div className="img-container">
-								<img src={require("../../imgs/index/about.webp")} alt="Schody ruchome"/>
+								<img src={require("../../imgs/index/about.jpg")} alt="Schody ruchome"/>
 							</div>
 						</Col>
 					</Row>

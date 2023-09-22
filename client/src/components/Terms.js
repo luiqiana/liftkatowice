@@ -4,7 +4,7 @@ class Terms extends Component {
 	render() {
 		return(
 			<section id="terms">
-				<iframe src="/dl/privacy.pdf" />
+				<iframe src="/dl/privacy.pdf" title="Polityka prywatności" />
 			</section>
 		);
 	}
