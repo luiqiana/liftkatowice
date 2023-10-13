@@ -318,9 +318,11 @@ section#about {
 
 		div.img-container {
 			overflow: hidden;
-			max-height: 100%;
+			position: relative;
+
 			img {
 				width: 100%;
+				position: absolute;
 			}
 		}
 	}
