@@ -17,6 +17,7 @@ class Projects extends Component {
 		this.closeGallery = this.closeGallery.bind(this);
 		this.buttonGallery = this.buttonGallery.bind(this);
 		this.directGallery = this.directGallery.bind(this);
+		this.getKeyboardKey = this.getKeyboardKey.bind(this);
 
 		this.state = {
 			galleryConfig: [],
@@ -30,8 +31,22 @@ class Projects extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		window.removeEventListener("keydown", this.getKeyboardKey);
+	}
+
+	getKeyboardKey(e) {
+		if(e.key === 'ArrowLeft') {
+			if(this.state.galleryOpen) this.buttonGallery("left")
+		}
+		else if(e.key === 'ArrowRight') {
+			if(this.state.galleryOpen) this.buttonGallery("right");
+		}
+	}
+
 	openGallery(year, project) {
 		document.getElementsByTagName("body")[0].style.overflow = "hidden";
+		window.addEventListener("keydown", this.getKeyboardKey);
 		// eslint-disable-next-line
 		const title = (eval("galleryConfig.y" + year + ".p" + project)).t;
 
@@ -72,6 +87,7 @@ class Projects extends Component {
 
 	closeGallery() {
 		document.getElementsByTagName("body")[0].style.overflow = "visible";
+		window.removeEventListener("keydown", this.getKeyboardKey);
 
 		this.setState({
 			galleryYear: 0,
