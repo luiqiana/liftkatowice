@@ -42,6 +42,9 @@ class Projects extends Component {
 		else if(e.key === 'ArrowRight') {
 			if(this.state.galleryOpen) this.buttonGallery("right");
 		}
+		else if(e.key === "Escape") {
+			if(this.state.galleryOpen) this.closeGallery();
+		}
 	}
 
 	openGallery(year, project) {
