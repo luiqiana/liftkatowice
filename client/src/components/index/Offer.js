@@ -124,7 +124,7 @@ class Offer extends Component {
 						<Col md={6} className="mt-3 mt-md-0 ">
 							<div className="offer-container p-2">
 								<div className="icon-container">
-									<i className="bi bi-tools" />
+									<i className="bi bi-headset" />
 								</div>
 								<div className="text-container p-2">
 									<div className="header-container">
