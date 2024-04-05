@@ -5,6 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
+import {removeDash} from "./validation/functions/RemoveDash";
+
 class ContactInformation extends Component {
 	constructor(props) {
 		super(props);
@@ -12,7 +14,7 @@ class ContactInformation extends Component {
 		this.state = {
 			name: "",
 			surname: "",
-			countrycode: "",
+			countrycode: "+48",
 			phone: "",
 			email: "",
 			company: "",
@@ -32,6 +34,202 @@ class ContactInformation extends Component {
 		this.setState({
 			[((e.target.name).slice(11, -5)).toLowerCase()]: e.target.value
 		});
+
+		if(((e.target.name).slice(11, -5)).toLowerCase() === "countrycode") this.changeCountryCode(e.target.value);
+	}
+
+	changePhone(e) {
+		if(e.target.value.length <= 11 && /^\d+$/.test(removeDash(e.target.value))) {
+			if(e.target.value.length > this.state.phone.length) {
+				const lastThreeChars = e.target.value.slice(-4, -1);
+				if((/^\d{3}$/.test(lastThreeChars) && e.target.value.length === 4) || (/^\d{3}$/.test(lastThreeChars) && e.target.value.includes('-'))) {
+					this.setState({
+						phone: e.target.value.slice(0, -1) + (e.target.value.slice(-1) === '-' ? "" : "-") + e.target.value.slice(-1)
+					});
+				}
+				else {
+					this.setState({
+						phone: e.target.value
+					});
+				}
+			}
+			else {
+				if(/^\d+$/.test(removeDash(e.target.value))) {
+					if(removeDash(this.state.phone).length > 9 && !this.state.phone.includes('-')) {
+						const cleaned = removeDash(e.target.value);
+						let phone = "";
+						const modulo  = cleaned.length % 3;
+
+						if (cleaned.length <= 3 || cleaned.length > 9) {
+							phone = cleaned;
+						}
+						else if (cleaned.length > 3 && cleaned.length < 6) {
+							const match = cleaned.match(/^(\d{3})$/);
+							phone = `${match[1]}-${cleaned.slice(-modulo)}`;
+						}
+						else if (cleaned.length === 6) {
+							const match = cleaned.match(/^(\d{3})(\d{3})$/);
+							phone = `${match[1]}-${match[2]}`;
+						}
+						else if (cleaned.length > 6 && cleaned.length < 9) {
+							const match = cleaned.match(/^(\d{3})(\d{3})$/);
+							phone = `${match[1]}-${match[2]}-${cleaned.slice(-modulo)}`;
+						}
+						else if (cleaned.length === 9) {
+							const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
+							phone = `${match[1]}-${match[2]}-${match[3]}`;
+						}
+
+						this.setState({
+							phone: phone
+						});
+					}
+					else if(removeDash(this.state.phone).length <= 9) {
+						if(!/^\d+$/.test(removeDash(this.state.phone)) && /^\d+$/.test(removeDash(e.target.value))) {
+							const cleaned = removeDash(e.target.value);
+							let phone = "";
+							const modulo  = cleaned.length % 3;
+
+							if (cleaned.length <= 3 || cleaned.length > 9) {
+								phone = cleaned;
+							}
+							else if (cleaned.length > 3 && cleaned.length < 6) {
+								const match = (cleaned.slice(0, -modulo)).match(/^(\d{3})$/);
+								phone = `${match[1]}-${cleaned.slice(-modulo)}`;
+							}
+							else if (cleaned.length === 6) {
+								const match = cleaned.match(/^(\d{3})(\d{3})$/);
+								phone = `${match[1]}-${match[2]}`;
+							}
+							else if (cleaned.length > 6 && cleaned.length < 9) {
+								const match = (cleaned.slice(0, -modulo)).match(/^(\d{3})(\d{3})$/);
+								phone = `${match[1]}-${match[2]}-${cleaned.slice(-modulo)}`;
+							}
+							else if (cleaned.length === 9) {
+								const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
+								phone = `${match[1]}-${match[2]}-${match[3]}`;
+							}
+
+							this.setState({
+								phone: phone
+							});
+						}
+						else if(/^\d+$/.test(removeDash(this.state.phone)) && /^\d+$/.test(removeDash(e.target.value))) {
+							const lastChar = e.target.value.slice(-1);
+							if(lastChar === '-') {
+								this.setState({
+									phone: e.target.value.slice(0, -1)
+								});
+							}
+							else {
+								this.setState({
+									phone: e.target.value
+								});
+							}
+						}
+						else {
+							this.setState({
+								phone: e.target.value
+							});
+						}
+					}
+				}
+				else {
+					this.setState({
+						phone: e.target.value
+					});
+				}
+			}
+		}
+		else {
+			this.setState({
+				phone: e.target.value.replace(/-/g, '')
+			});
+		}
+	}
+
+	pastePhone(e) {
+		e.preventDefault();
+		const fullString = (e.target.value + e.clipboardData.getData('text')).toString();
+		if(/^\d+$/.test(removeDash(fullString))) {
+			const cleaned = removeDash(fullString);
+			let phone = "";
+			const modulo  = cleaned.length % 3;
+
+			if (cleaned.length <= 3 || cleaned.length > 9) {
+				phone = cleaned;
+			}
+			else if (cleaned.length > 3 && cleaned.length < 6) {
+				const match = (cleaned.slice(0, -modulo)).match(/^(\d{3})$/);
+				phone = `${match[1]}-${cleaned.slice(-modulo)}`;
+			}
+			else if (cleaned.length === 6) {
+				const match = cleaned.match(/^(\d{3})(\d{3})$/);
+				phone = `${match[1]}-${match[2]}`;
+			}
+			else if (cleaned.length > 6 && cleaned.length < 9) {
+				const match = (cleaned.slice(0, -modulo)).match(/^(\d{3})(\d{3})$/);
+				phone = `${match[1]}-${match[2]}-${cleaned.slice(-modulo)}`;
+			}
+			else if (cleaned.length === 9) {
+				const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
+				phone = `${match[1]}-${match[2]}-${match[3]}`;
+			}
+
+			this.setState({
+				phone: phone
+			});
+		}
+		else {
+			this.setState({
+				phone: fullString
+			});
+		}
+	}
+
+	changeCountryCode(value) {
+		if(value === "+48") {
+			const phoneStr = removeDash(this.state.phone);
+			if(/^\d+$/.test(phoneStr)) {
+				const cleaned = removeDash(phoneStr);
+				let phone = "";
+				const modulo  = cleaned.length % 3;
+
+				if (cleaned.length <= 3 || cleaned.length > 9) {
+					phone = cleaned;
+				}
+				else if (cleaned.length > 3 && cleaned.length < 6) {
+					const match = (cleaned.slice(0, -modulo)).match(/^(\d{3})$/);
+					phone = `${match[1]}-${cleaned.slice(-modulo)}`;
+				}
+				else if (cleaned.length === 6) {
+					const match = cleaned.match(/^(\d{3})(\d{3})$/);
+					phone = `${match[1]}-${match[2]}`;
+				}
+				else if (cleaned.length > 6 && cleaned.length < 9) {
+					const match = (cleaned.slice(0, -modulo)).match(/^(\d{3})(\d{3})$/);
+					phone = `${match[1]}-${match[2]}-${cleaned.slice(-modulo)}`;
+				}
+				else if (cleaned.length === 9) {
+					const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
+					phone = `${match[1]}-${match[2]}-${match[3]}`;
+				}
+
+				this.setState({
+					phone: phone
+				});
+			}
+			else {
+				this.setState({
+					phone: phoneStr
+				});
+			}
+		}
+		else {
+			this.setState({
+				phone: removeDash(this.state.phone)
+			});
+		}
 	}
 
 	render() {
@@ -60,7 +258,7 @@ class ContactInformation extends Component {
 										<input type="text" className={`contact-info-countrycode-input ps-1 ${this.state.countrycodeHighlight}`} id={`contact${type}CountrycodeInput`} spellCheck="false" name={`contact${type}CountrycodeInput`} placeholder="+48" title="Kod państwa" value={this.state.countrycode} onChange={(e) => this.changeInput(e)}/>
 									</div>
 									<div className="phone-container">
-										<input type="text" className={`contact-info-phone-input ps-1 ${this.state.phoneHighlight}`} id={`contact${type}PhoneInput`} spellCheck="false" name={`contact${type}PhoneInput`} placeholder="Telefon" title="Telefon" value={this.state.phone} onChange={(e) => this.changeInput(e)}/>
+										<input type="text" className={`contact-info-phone-input ps-1 ${this.state.phoneHighlight}`} id={`contact${type}PhoneInput`} spellCheck="false" name={`contact${type}PhoneInput`} placeholder="Telefon" title="Telefon" value={this.state.phone} onChange={(e) => this.changePhone(e)} onPaste={(e) => this.pastePhone(e)}/>
 									</div>
 								</div>
 							</Form.Group>

@@ -150,7 +150,7 @@ class ContactForm extends Component {
 		InfoState.setState({
 			name: "",
 			surname: "",
-			countrycode: "",
+			countrycode: "+48",
 			phone: "",
 			email: "",
 			company: "",

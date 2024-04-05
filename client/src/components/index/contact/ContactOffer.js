@@ -14,6 +14,8 @@ import ContactSubmit from "./ContactSubmit";
 import ContactTermsOfService from "./ContactTermsOfService";
 import ErrorsCreator from "./ErrorsCreator";
 
+import {removeDash} from "./validation/functions/RemoveDash";
+
 class ContactOffer extends Component {
 	constructor(props) {
 		super(props);
@@ -137,7 +139,7 @@ class ContactOffer extends Component {
 			name: ContactInformationState.name,
 			surname: ContactInformationState.surname,
 			countrycode: ContactInformationState.countrycode,
-			phone: ContactInformationState.phone,
+			phone: removeDash(ContactInformationState.phone),
 			email: ContactInformationState.email,
 			company: ContactInformationState.company,
 			additionalInfo: this.state.additionalInfo,
@@ -328,7 +330,7 @@ class ContactOffer extends Component {
 		this.getContactInformation().setState({
 			name: "",
 			surname: "",
-			countrycode: "",
+			countrycode: "+48",
 			phone: "",
 			email: "",
 			company: ""
