@@ -35,7 +35,9 @@ class ContactOffer extends Component {
 			type: "",
 			additionalInfo: "",
 			errors: <></>,
-			sent: ""
+			sent: "",
+			additionalInfoState: false,
+			browser: "chrome"
 		};
 	}
 
@@ -55,6 +57,10 @@ class ContactOffer extends Component {
 		this.showAlert = this.showAlert.bind(this);
 		this.closeAlert = this.closeAlert.bind(this);
 		this.loader = this.loader.bind(this);
+		this.getUserAgent = this.getUserAgent.bind(this);
+		this.additionalInfoState = this.additionalInfoState.bind(this);
+
+		this.getUserAgent();
 	}
 
 	getTerms() {
@@ -83,6 +89,26 @@ class ContactOffer extends Component {
 
 	getSubmit() {
 		return this.SubmitRef.current;
+	}
+
+	getUserAgent() {
+		const browser = new Map();
+
+		browser.set("isFirefox", navigator.userAgent.toLowerCase().includes('firefox'));
+		browser.set("isSafari", /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+		browser.set("isChrome", /chrome/i.test(navigator.userAgent) && window.chrome);
+
+		const numberOfTrues = Array.from(browser.values()).filter(value => value === true).length;
+
+		this.setState({
+			browser: (numberOfTrues === 1 ? (browser.get("isFirefox") ? "firefox" : (browser.get("isSafari") ? "safari" : "chrome")) : "chrome")
+		});
+	}
+
+	additionalInfoState(state) {
+		this.setState({
+			additionalInfoState: state
+		});
 	}
 
 	changeServiceType = (type) => {
@@ -513,7 +539,12 @@ class ContactOffer extends Component {
 							<h5>Dodatkowe informacje</h5>
 						</div>
 						<div className="contact-offer-additional-info px-2">
-							<textarea className="contact-offer-additional-info p-1 w-100" value={this.state.additionalInfo} name="additionalInfo" placeholder="Dodatkowe informacje (opcjonalne)" title="Dodatkowe informacje (opcjonalne)" onChange={(e) => this.changeInput(e)}/>
+							<textarea className="contact-offer-additional-info p-1 w-100" value={this.state.additionalInfo} name="additionalInfo" placeholder="Dodatkowe informacje (opcjonalne)" title="Dodatkowe informacje (opcjonalne)" onChange={(e) => this.changeInput(e)} onFocus={() => this.additionalInfoState(true)} onBlur={() => this.additionalInfoState(false)}/>
+							<div className={`contact-info-counter-container ${this.state.browser}-browser`}>
+								<div className={`contact-info-counter-wrapper px-2 ${this.state.additionalInfoState ? "focus" : ""}`}>
+									<span className={this.state.additionalInfo.length < 20 ? "red" : "green"}>{this.state.additionalInfo.length}/20</span>
+								</div>
+							</div>
 						</div>
 						<div className="header-container pt-2 px-2 mt-3">
 							<h5>Informacje kontaktowe</h5>

@@ -1102,14 +1102,78 @@ section#contact {
 					div.contact-offer-additional-info {
 						textarea.contact-offer-additional-info {
 							height: 100px;
-							border-radius: 15px;
+							border-top-left-radius: 15px;
+							border-top-right-radius: 15px;
 							border: 2px solid #ff0000;
 							resize: none;
 							outline: none;
 							transition: 0.5s;
 
+							@media(min-width: 351px) {
+								border-bottom-left-radius: 15px;
+							}
+
 							&:focus {
 								border: 2px solid #dddddd;
+							}
+						}
+
+						div.contact-info-counter-container {
+							width: 100%;
+							display: flex;
+							flex-direction: row-reverse;
+
+							&.firefox-browser {
+								margin-top: -3px;
+							}
+
+							&.chrome-browser {
+								margin-top: -9px;
+							}
+
+							&.safari-browser {
+								margin-top: -10px;
+							}
+
+							div.contact-info-counter-wrapper {
+								border-right: 2px solid #ff0000;
+								border-left: 2px solid #ff0000;
+								border-bottom: 2px solid #ff0000;
+								z-index: 2;
+								background-color: #ffffff;
+								transition: 0.5s;
+
+								@media(max-width: 350px) {
+									width: 100% !important;
+									border-bottom-left-radius: 15px;
+									border-bottom-right-radius: 15px;
+									text-align: right;
+								}
+
+								@media(min-width: 351px) {
+									min-width: 80px;
+									border-bottom-left-radius: 10px;
+									border-bottom-right-radius: 10px;
+									text-align: center;
+								}
+
+								&.focus {
+									border-right: 2px solid #dddddd;
+									border-left: 2px solid #dddddd;
+									border-bottom: 2px solid #dddddd;
+								}
+
+								span {
+									transition: 0.2s;
+
+									&.red {
+										color: #ff0000;
+									}
+
+									&.green {
+										color: #00ff00;
+									}
+								}
 							}
 						}
 					}
@@ -1463,12 +1527,17 @@ section#contact {
 
 					textarea.contact-info-textarea-input {
 						width: 100%;
-						border-radius: 15px;
+						border-top-left-radius: 15px;
+						border-top-right-radius: 15px;
 						border: 2px solid #ff0000;
 						transition: 0.5s;
 						outline: none;
 						resize: none;
 						height: 200px;
+
+						@media(min-width: 351px) {
+							border-bottom-left-radius: 15px;
+						}
 
 						&.highlight {
 							background-color: rgba(255, 0, 0, 0.2) !important;
@@ -1476,6 +1545,65 @@ section#contact {
 
 						&:focus {
 							border: 2px solid #dddddd;
+						}
+					}
+
+					div.contact-info-counter-container {
+						width: 100%;
+						display: flex;
+						flex-direction: row-reverse;
+
+						&.firefox-browser {
+							margin-top: -3px;
+						}
+
+						&.chrome-browser {
+							margin-top: -9px;
+						}
+
+						&.safari-browser {
+							margin-top: -10px;
+						}
+
+						div.contact-info-counter-wrapper {
+							border-right: 2px solid #ff0000;
+							border-left: 2px solid #ff0000;
+							border-bottom: 2px solid #ff0000;
+							z-index: 2;
+							background-color: #ffffff;
+							transition: 0.5s;
+
+							@media(max-width: 350px) {
+								width: 100% !important;
+								border-bottom-left-radius: 15px;
+								border-bottom-right-radius: 15px;
+								text-align: right;
+							}
+
+							@media(min-width: 351px) {
+								min-width: 80px;
+								border-bottom-left-radius: 10px;
+								border-bottom-right-radius: 10px;
+								text-align: center;
+							}
+
+							&.focus {
+								border-right: 2px solid #dddddd;
+								border-left: 2px solid #dddddd;
+								border-bottom: 2px solid #dddddd;
+							}
+
+							span {
+								transition: 0.2s;
+
+								&.red {
+									color: #ff0000;
+								}
+
+								&.green {
+									color: #00ff00;
+								}
+							}
 						}
 					}
 				}

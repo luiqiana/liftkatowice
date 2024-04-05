@@ -28,7 +28,9 @@ class ContactForm extends Component {
 			message: "",
 			errors: <></>,
 			messageHighlight: "",
-			sent: ""
+			sent: "",
+			messageState: false,
+			browser: "chrome"
 		};
 	}
 
@@ -44,6 +46,24 @@ class ContactForm extends Component {
 		this.changeInput = this.changeInput.bind(this);
 		this.showAlert = this.showAlert.bind(this);
 		this.closeAlert = this.closeAlert.bind(this);
+		this.messageState = this.messageState.bind(this);
+		this.getUserAgent = this.getUserAgent.bind(this);
+
+		this.getUserAgent();
+	}
+
+	getUserAgent() {
+		const browser = new Map();
+
+		browser.set("isFirefox", navigator.userAgent.toLowerCase().includes('firefox'));
+		browser.set("isSafari", /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+		browser.set("isChrome", /chrome/i.test(navigator.userAgent) && window.chrome);
+
+		const numberOfTrues = Array.from(browser.values()).filter(value => value === true).length;
+
+		this.setState({
+			browser: (numberOfTrues === 1 ? (browser.get("isFirefox") ? "firefox" : (browser.get("isSafari") ? "safari" : "chrome")) : "chrome")
+		});
 	}
 
 	changeInput(e) {
@@ -266,6 +286,12 @@ class ContactForm extends Component {
 		}
 	}
 
+	messageState(state) {
+		this.setState({
+			messageState: state
+		});
+	}
+
 	render() {
 		return(
 			<>
@@ -274,14 +300,19 @@ class ContactForm extends Component {
 					ref={this.AlertRef}
 				/>
 				<Form className="contact-form" id="ContactForm">
-					<div className="contact-info pt-2 px-2">
+					<div className="contact-info pt-2 px-2 pb-2">
 						<ContactInformation
 							key={1}
 							ref={this.InfoRef}
 							type="Form"
 						/>
 						<Form.Group className="contact-form-info-message-container mt-2">
-							<textarea className={`contact-info-textarea-input ps-1 ${this.state.messageHighlight}`} id="contactInfoMessageInput" spellCheck="true" name="contactInfoMessageInput" placeholder="Wiadomość" title="Wiadomość" value={this.state.message} onChange={(e) => this.changeInput(e)}/>
+							<textarea className={`contact-info-textarea-input ps-1 ${this.state.messageHighlight}`} id="contactInfoMessageInput" spellCheck="true" name="contactInfoMessageInput" placeholder="Wiadomość" title="Wiadomość" value={this.state.message} onChange={(e) => this.changeInput(e)} onFocus={() => this.messageState(true)} onBlur={() => this.messageState(false)}/>
+							<div className={`contact-info-counter-container ${this.state.browser}-browser`}>
+								<div className={`contact-info-counter-wrapper px-2 ${this.state.messageState ? "focus" : ""}`}>
+									<span className={this.state.message.length < 20 ? "red" : "green"}>{this.state.message.length}/20</span>
+								</div>
+							</div>
 						</Form.Group>
 					</div>
 					<ContactSubmit
