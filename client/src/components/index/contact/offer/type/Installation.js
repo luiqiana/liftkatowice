@@ -101,9 +101,6 @@ class Installation extends Component {
 		this.getUserAgent = this.getUserAgent.bind(this);
 
 		this.getUserAgent();
-		setTimeout(() => {
-			console.log(this.state.browser);
-		}, 1000)
 	}
 
 	getUserAgent() {
