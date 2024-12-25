@@ -85,7 +85,9 @@ class Installation extends Component {
 
 			walkwayAngleHighlight: "",
 			walkwayAngleOtherHighlight: "",
-			walkwayLiftingHighlight: ""
+			walkwayLiftingHighlight: "",
+
+			browser: "chrome"
 		}
 
 		this.elevatorSelect = React.createRef();
@@ -96,7 +98,28 @@ class Installation extends Component {
 		this.changeInput = this.changeInput.bind(this);
 		this.changeNumberValue = this.changeNumberValue.bind(this);
 		this.changeShaftDimensions = this.changeShaftDimensions.bind(this);
+		this.getUserAgent = this.getUserAgent.bind(this);
+
+		this.getUserAgent();
+		setTimeout(() => {
+			console.log(this.state.browser);
+		}, 1000)
 	}
+
+	getUserAgent() {
+		const browser = new Map();
+
+		browser.set("isFirefox", navigator.userAgent.toLowerCase().includes('firefox'));
+		browser.set("isSafari", /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+		browser.set("isChrome", /chrome/i.test(navigator.userAgent) && window.chrome);
+
+		const numberOfTrues = Array.from(browser.values()).filter(value => value === true).length;
+
+		this.setState({
+			browser: (numberOfTrues === 1 ? (browser.get("isFirefox") ? "firefox" : (browser.get("isSafari") ? "safari" : "chrome")) : "chrome")
+		});
+	}
+
 
 	changeInput(e) {
 		this.setState({
@@ -271,13 +294,13 @@ class Installation extends Component {
 								<Form.Group>
 									<div className="contact-offer-number-inputs-container w-100 h-100">
 										<div className="button-container">
-											<button type="button" className={`contact-offer-number-button ${this.state.elevatorStops <= 2 ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorStopsHighlight}`} name="decreaseElevatorStops" onClick={(e) => this.changeNumberValue(e)}>-</button>
+											<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.elevatorStops <= 2 ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorStopsHighlight}`} name="decreaseElevatorStops" onClick={(e) => this.changeNumberValue(e)}>-</button>
 										</div>
 										<div className="input-container">
 											<input type="text" className={`contact-offer-number-input ${this.state.elevatorStopsHighlight}`} spellCheck="false" name="elevatorStops" title="Liczba przystanków" value={this.state.elevatorStops} onChange={(e) => this.changeInput(e)}/>
 										</div>
 										<div className="button-container">
-											<button type="button" className={`contact-offer-number-button ${this.state.elevatorStopsHighlight}`} name="increaseElevatorStops" onClick={(e) => this.changeNumberValue(e)}>+</button>
+											<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.elevatorStopsHighlight}`} name="increaseElevatorStops" onClick={(e) => this.changeNumberValue(e)}>+</button>
 										</div>
 									</div>
 								</Form.Group>
@@ -289,13 +312,13 @@ class Installation extends Component {
 								<Form.Group>
 									<div className="contact-offer-number-inputs-container w-100 h-100">
 										<div className="button-container">
-											<button type="button" className={`contact-offer-number-button ${this.state.elevatorCapac <= 100 || this.state.elevatorLockCapacity ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCapacityHighlight}`} name="decreaseElevatorCapac" onClick={(e) => this.changeNumberValue(e)}>-</button>
+											<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.elevatorCapac <= 100 || this.state.elevatorLockCapacity ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCapacityHighlight}`} name="decreaseElevatorCapac" onClick={(e) => this.changeNumberValue(e)}>-</button>
 										</div>
 										<div className="input-container">
 											<input type="text" className={`contact-offer-number-input ${this.state.elevatorCapacityHighlight}`} spellCheck="false" name="elevatorCapac" title="Liczba przystanków" disabled={this.state.elevatorLockCapacity}  value={this.state.elevatorCapac} onChange={(e) => this.changeInput(e)}/>
 										</div>
 										<div className="button-container">
-											<button type="button" className={`contact-offer-number-button ${this.state.elevatorLockCapacity ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCapacityHighlight}`} name="increaseElevatorCapac" onClick={(e) => this.changeNumberValue(e)}>+</button>
+											<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.elevatorLockCapacity ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCapacityHighlight}`} name="increaseElevatorCapac" onClick={(e) => this.changeNumberValue(e)}>+</button>
 										</div>
 									</div>
 								</Form.Group>
@@ -482,13 +505,13 @@ class Installation extends Component {
 								<Form.Group>
 									<div className="contact-offer-number-inputs-container w-100 h-100">
 										<div className="button-container">
-											<button type="button" className={`contact-offer-number-button ${this.state.platformStops <= 2 ? "contact-offer-number-button-disabled" : ""} ${this.state.platformStopsHighlight}`} name="decreasePlatformStops" onClick={(e) => this.changeNumberValue(e)}>-</button>
+											<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.platformStops <= 2 ? "contact-offer-number-button-disabled" : ""} ${this.state.platformStopsHighlight}`} name="decreasePlatformStops" onClick={(e) => this.changeNumberValue(e)}>-</button>
 										</div>
 										<div className="input-container">
 											<input type="text" className={`contact-offer-number-input ${this.state.platformStopsHighlight}`} spellCheck="false" name="platformStops" title="Liczba przystanków" value={this.state.platformStops} onChange={(e) => this.changeInput(e)}/>
 										</div>
 										<div className="button-container">
-											<button type="button" className={`contact-offer-number-button ${this.state.platformStopsHighlight}`} name="increasePlatformStops" onClick={(e) => this.changeNumberValue(e)}>+</button>
+											<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.platformStopsHighlight}`} name="increasePlatformStops" onClick={(e) => this.changeNumberValue(e)}>+</button>
 										</div>
 									</div>
 								</Form.Group>

@@ -30,13 +30,32 @@ class Maintenance extends Component {
 			walkwayCountHighlight: "",
 			walkwayInfoHighlight: "",
 			maintenancePostalcodeHighlight: "",
-			maintenanceCityHighlight: ""
+			maintenanceCityHighlight: "",
+
+			browser: "chrome"
 		};
 	}
 
 	componentDidMount() {
 		this.changeInput = this.changeInput.bind(this);
 		this.changeNumberValue = this.changeNumberValue.bind(this);
+		this.getUserAgent = this.getUserAgent.bind(this);
+
+		this.getUserAgent();
+	}
+
+	getUserAgent() {
+		const browser = new Map();
+
+		browser.set("isFirefox", navigator.userAgent.toLowerCase().includes('firefox'));
+		browser.set("isSafari", /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+		browser.set("isChrome", /chrome/i.test(navigator.userAgent) && window.chrome);
+
+		const numberOfTrues = Array.from(browser.values()).filter(value => value === true).length;
+
+		this.setState({
+			browser: (numberOfTrues === 1 ? (browser.get("isFirefox") ? "firefox" : (browser.get("isSafari") ? "safari" : "chrome")) : "chrome")
+		});
 	}
 
 	changeInput(e) {
@@ -77,13 +96,13 @@ class Maintenance extends Component {
 							<Form.Group>
 								<div className="contact-offer-number-inputs-container w-100 h-100">
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${this.state.elevatorCount <= 1 || !devicetype.includes("elevator") ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCountHighlight}`} name="decreaseElevator" onClick={(e) => this.changeNumberValue(e)}>-</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.elevatorCount <= 1 || !devicetype.includes("elevator") ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCountHighlight}`} name="decreaseElevator" onClick={(e) => this.changeNumberValue(e)}>-</button>
 									</div>
 									<div className="input-container">
 										<input type="text" className={`contact-offer-number-input ${this.state.elevatorCountHighlight}`} spellCheck="false" name="elevatorCount" title="Liczba dźwigów" disabled={!devicetype.includes("elevator")} value={devicetype.includes("elevator") ? this.state.elevatorCount : "0"} onChange={(e) => this.changeInput(e)}/>
 									</div>
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${!devicetype.includes("elevator") ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCountHighlight}`} name="increaseElevator" onClick={(e) => this.changeNumberValue(e)}>+</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${!devicetype.includes("elevator") ? "contact-offer-number-button-disabled" : ""} ${this.state.elevatorCountHighlight}`} name="increaseElevator" onClick={(e) => this.changeNumberValue(e)}>+</button>
 									</div>
 								</div>
 							</Form.Group>
@@ -95,13 +114,13 @@ class Maintenance extends Component {
 							<Form.Group>
 								<div className="contact-offer-number-inputs-container w-100 h-100">
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${this.state.platformCount <= 1 || !devicetype.includes("platform") ? "contact-offer-number-button-disabled" : ""} ${this.state.platformCountHighlight}`} name="decreasePlatform" onClick={(e) => this.changeNumberValue(e)}>-</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.platformCount <= 1 || !devicetype.includes("platform") ? "contact-offer-number-button-disabled" : ""} ${this.state.platformCountHighlight}`} name="decreasePlatform" onClick={(e) => this.changeNumberValue(e)}>-</button>
 									</div>
 									<div className="input-container">
 										<input type="text" className={`contact-offer-number-input ${this.state.platformCountHighlight}`} spellCheck="false" name="platformCount" title="Liczba platform" disabled={!devicetype.includes("platform")} value={devicetype.includes("platform") ? this.state.platformCount : "0"} onChange={(e) => this.changeInput(e)}/>
 									</div>
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${!devicetype.includes("platform") ? "contact-offer-number-button-disabled" : ""} ${this.state.platformCountHighlight}`} name="increasePlatform" onClick={(e) => this.changeNumberValue(e)}>+</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${!devicetype.includes("platform") ? "contact-offer-number-button-disabled" : ""} ${this.state.platformCountHighlight}`} name="increasePlatform" onClick={(e) => this.changeNumberValue(e)}>+</button>
 									</div>
 								</div>
 							</Form.Group>
@@ -115,13 +134,13 @@ class Maintenance extends Component {
 							<Form.Group>
 								<div className="contact-offer-number-inputs-container w-100 h-100">
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${this.state.escalatoCount <= 1 || !devicetype.includes("escalator") ? "contact-offer-number-button-disabled" : ""} ${this.state.escalatorCountHighlight}`} name="decreaseEscalato" onClick={(e) => this.changeNumberValue(e)}>-</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.escalatoCount <= 1 || !devicetype.includes("escalator") ? "contact-offer-number-button-disabled" : ""} ${this.state.escalatorCountHighlight}`} name="decreaseEscalato" onClick={(e) => this.changeNumberValue(e)}>-</button>
 									</div>
 									<div className="input-container">
 										<input type="text" className={`contact-offer-number-input ${this.state.escalatorCountHighlight}`} spellCheck="false" name="escalatoCount" title="Liczba schodów ruchomych" disabled={!devicetype.includes("escalator")} value={devicetype.includes("escalator") ? this.state.escalatoCount : "0"} onChange={(e) => this.changeInput(e)}/>
 									</div>
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${!devicetype.includes("escalator") ? "contact-offer-number-button-disabled" : ""} ${this.state.escalatorCountHighlight}`} name="increaseEscalato" onClick={(e) => this.changeNumberValue(e)}>+</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${!devicetype.includes("escalator") ? "contact-offer-number-button-disabled" : ""} ${this.state.escalatorCountHighlight}`} name="increaseEscalato" onClick={(e) => this.changeNumberValue(e)}>+</button>
 									</div>
 								</div>
 							</Form.Group>
@@ -133,13 +152,13 @@ class Maintenance extends Component {
 							<Form.Group>
 								<div className="contact-offer-number-inputs-container w-100 h-100">
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${this.state.walkwayyCount <= 1 || !devicetype.includes("walkway") ? "contact-offer-number-button-disabled" : ""} ${this.state.walkwayCountHighlight}`} name="decreaseWalkwayy" onClick={(e) => this.changeNumberValue(e)}>-</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${this.state.walkwayyCount <= 1 || !devicetype.includes("walkway") ? "contact-offer-number-button-disabled" : ""} ${this.state.walkwayCountHighlight}`} name="decreaseWalkwayy" onClick={(e) => this.changeNumberValue(e)}>-</button>
 									</div>
 									<div className="input-container">
 										<input type="text" className={`contact-offer-number-input ${this.state.walkwayCountHighlight}`} spellCheck="false" name="walkwayyCount" title="Liczba chodników ruchomych" disabled={!devicetype.includes("walkway")} value={devicetype.includes("walkway") ? this.state.walkwayyCount : "0"} onChange={(e) => this.changeInput(e)}/>
 									</div>
 									<div className="button-container">
-										<button type="button" className={`contact-offer-number-button ${!devicetype.includes("walkway") ? "contact-offer-number-button-disabled" : ""} ${this.state.walkwayCountHighlight}`} name="increaseWalkwayy" onClick={(e) => this.changeNumberValue(e)}>+</button>
+										<button type="button" style={this.state.browser === "safari" ? {paddingTop: "1px"} : {}} className={`contact-offer-number-button ${!devicetype.includes("walkway") ? "contact-offer-number-button-disabled" : ""} ${this.state.walkwayCountHighlight}`} name="increaseWalkwayy" onClick={(e) => this.changeNumberValue(e)}>+</button>
 									</div>
 								</div>
 							</Form.Group>
